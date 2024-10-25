@@ -11,11 +11,4 @@ class Doas < Formula
   def install
     system "make", "PREFIX=#{prefix}", "SYSCONFDIR=#{etc}", "install"
   end
-
-  def caveats
-    <<~EOS
-      To complete the installation, run the following command manually:
-        sudo cp /etc/pam.d/sudo /etc/pam.d/doas
-    EOS
-  end
 end
