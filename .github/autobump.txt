@@ -1710,6 +1710,7 @@ lndir
 localai
 localstack
 locust
+log4cplus
 log4cxx
 logdy
 logrotate
@@ -2381,6 +2382,7 @@ rdb
 re-flex
 readpe
 rebar3
+recc
 recode
 recoverpy
 redict
@@ -2525,6 +2527,7 @@ serialosc
 serpl
 serverless
 service-weaver
+sf
 sfcgal
 sh4d0wup
 shaderc
