@@ -31,7 +31,7 @@ class Zeromq < Formula
   end
 
   depends_on "asciidoc" => :build
-  depends_on "pkg-config" => [:build, :test]
+  depends_on "pkgconf" => [:build, :test]
   depends_on "xmlto" => :build
 
   depends_on "libsodium"
@@ -49,13 +49,13 @@ class Zeromq < Formula
     # https://github.com/Homebrew/homebrew-core/pull/35940#issuecomment-454177261
 
     system "./autogen.sh" if build.head?
-    system "./configure", "--disable-dependency-tracking", "--prefix=#{prefix}", "--with-libsodium"
+    system "./configure", "--with-libsodium", *std_configure_args
     system "make"
     system "make", "install"
   end
 
   test do
-    (testpath/"test.c").write <<~EOS
+    (testpath/"test.c").write <<~C
       #include <assert.h>
       #include <zmq.h>
 
@@ -65,7 +65,7 @@ class Zeromq < Formula
         assert(0 == zmq_msg_init_size(&query, 1));
         return 0;
       }
-    EOS
+    C
     system ENV.cc, "test.c", "-L#{lib}", "-lzmq", "-o", "test"
     system "./test"
     system "pkg-config", "libzmq", "--cflags"

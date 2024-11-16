@@ -1,18 +1,23 @@
 class Melange < Formula
   desc "Build APKs from source code"
   homepage "https://github.com/chainguard-dev/melange"
-  url "https://github.com/chainguard-dev/melange/archive/refs/tags/v0.14.7.tar.gz"
-  sha256 "a761d60b83d2a83d0bfedba94d8472ffa5b130600c7cf54eeea4f96b53f1e28b"
+  url "https://github.com/chainguard-dev/melange/archive/refs/tags/v0.15.7.tar.gz"
+  sha256 "c648b49f97ffb18dee2a4bc2bbb32c984d69e2c92472e3379a6f293d11fd1b1b"
   license "Apache-2.0"
   head "https://github.com/chainguard-dev/melange.git", branch: "main"
 
+  livecheck do
+    url :stable
+    strategy :github_latest
+  end
+
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "4ae14366bda1f5bff1f5de4d447d577d36b3d7f62d607a1f144be1a373bb64d8"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "4ae14366bda1f5bff1f5de4d447d577d36b3d7f62d607a1f144be1a373bb64d8"
-    sha256 cellar: :any_skip_relocation, arm64_ventura: "4ae14366bda1f5bff1f5de4d447d577d36b3d7f62d607a1f144be1a373bb64d8"
-    sha256 cellar: :any_skip_relocation, sonoma:        "bf45bb920a3742c9eac9063d291e2e729439d64b906218dda0873c7fb71ed040"
-    sha256 cellar: :any_skip_relocation, ventura:       "bf45bb920a3742c9eac9063d291e2e729439d64b906218dda0873c7fb71ed040"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "31d36844f4e18a25648dfb693228c57f6799fd0aba9654c6c22ee3daaba14f9c"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "83c22a4dc8f0258d781bfadab1f5a5a5ba7ae5b377bf962c3dbe67f101613ac4"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "83c22a4dc8f0258d781bfadab1f5a5a5ba7ae5b377bf962c3dbe67f101613ac4"
+    sha256 cellar: :any_skip_relocation, arm64_ventura: "83c22a4dc8f0258d781bfadab1f5a5a5ba7ae5b377bf962c3dbe67f101613ac4"
+    sha256 cellar: :any_skip_relocation, sonoma:        "0025633593599c0ef7a54452f5c34edef3717188c80ec5d7ab894e3c2491fcac"
+    sha256 cellar: :any_skip_relocation, ventura:       "0025633593599c0ef7a54452f5c34edef3717188c80ec5d7ab894e3c2491fcac"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "ff354451c8c945e1155f52d5312860c703fef3ae65df39f0d57a9059436266a8"
   end
 
   depends_on "go" => :build
@@ -31,7 +36,7 @@ class Melange < Formula
   end
 
   test do
-    (testpath/"test.yml").write <<~EOS
+    (testpath/"test.yml").write <<~YAML
       package:
         name: hello
         version: 2.12
@@ -69,7 +74,7 @@ class Melange < Formula
         - uses: autoconf/make
         - uses: autoconf/make-install
         - uses: strip
-    EOS
+    YAML
 
     assert_equal "hello-2.12-r0", shell_output("#{bin}/melange package-version #{testpath}/test.yml")
 

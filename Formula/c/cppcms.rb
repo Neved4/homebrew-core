@@ -50,7 +50,7 @@ class Cppcms < Formula
   end
 
   test do
-    (testpath/"hello.cpp").write <<~EOS
+    (testpath/"hello.cpp").write <<~CPP
       #include <cppcms/application.h>
       #include <cppcms/applications_pool.h>
       #include <cppcms/service.h>
@@ -89,10 +89,10 @@ class Cppcms < Formula
               return -1;
           }
       }
-    EOS
+    CPP
 
     port = free_port
-    (testpath/"config.json").write <<~EOS
+    (testpath/"config.json").write <<~JSON
       {
           "service" : {
               "api" : "http",
@@ -106,7 +106,7 @@ class Cppcms < Formula
               "script_names" : [ "/hello" ]
           }
       }
-    EOS
+    JSON
     system ENV.cxx, "hello.cpp", "-std=c++11", "-L#{lib}", "-lcppcms", "-o", "hello"
     pid = fork { exec "./hello", "-c", "config.json" }
 

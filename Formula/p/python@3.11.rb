@@ -168,9 +168,6 @@ class PythonAT311 < Formula
       args << "--with-dbmliborder=bdb"
     end
 
-    # Resolve HOMEBREW_PREFIX in our sysconfig modification.
-    inreplace "Lib/sysconfig.py", "@@HOMEBREW_PREFIX@@", HOMEBREW_PREFIX
-
     # We want our readline! This is just to outsmart the detection code,
     # superenv makes cc always find includes/libs!
     if OS.linux?
@@ -508,7 +505,7 @@ class PythonAT311 < Formula
                  shell_output("#{python3} -Sc 'import dbm.gnu' 2>&1", 1)
 
     # Verify that the selected DBM interface works
-    (testpath/"dbm_test.py").write <<~EOS
+    (testpath/"dbm_test.py").write <<~PYTHON
       import dbm
 
       with dbm.ndbm.open("test", "c") as db:
@@ -517,7 +514,7 @@ class PythonAT311 < Formula
           assert list(db.keys()) == [b"foo \\xbd"]
           assert b"foo \\xbd" in db
           assert db[b"foo \\xbd"] == b"bar \\xbd"
-    EOS
+    PYTHON
     system python3, "dbm_test.py"
 
     system bin/"pip#{version.major_minor}", "list", "--format=columns"

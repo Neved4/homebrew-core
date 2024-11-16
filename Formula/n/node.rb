@@ -1,8 +1,8 @@
 class Node < Formula
   desc "Platform built on V8 to build network applications"
   homepage "https://nodejs.org/"
-  url "https://nodejs.org/dist/v22.10.0/node-v22.10.0.tar.xz"
-  sha256 "3180710d3130ad9df01466abf010e408d41b374be54301d1480d10eca73558e0"
+  url "https://nodejs.org/dist/v23.2.0/node-v23.2.0.tar.xz"
+  sha256 "3cf7a8a36682775693691f1de901bb5973ad3c0ae2aa87b1add9de515e7b2fc7"
   license "MIT"
   head "https://github.com/nodejs/node.git", branch: "main"
 
@@ -12,19 +12,19 @@ class Node < Formula
   end
 
   bottle do
-    sha256 arm64_sequoia: "8873a7d069ab23b64ae759a120aad341efc70d52d40ae7f516929749c989ab32"
-    sha256 arm64_sonoma:  "b720787c6a939c9297b3bb2afed61f7575320d0f96b19e80326e1d1c64742a8b"
-    sha256 arm64_ventura: "cebda79d7078e012a35c515b596f5751d06cfe473ff0b6e4d12a0690698196c0"
-    sha256 sonoma:        "ee69651ab2feba623a36be22e913a3f2d1b7b62221606407e5cbfe1f9e24a350"
-    sha256 ventura:       "c41631ba7b8183681ca13c2259f20223b448f050103174d5bd8a4acec033fa06"
-    sha256 x86_64_linux:  "1dbea0b65a46aedeeeb95d766c4754fa4bbe214d162e0ea58c0f6396bd67da6b"
+    sha256 arm64_sequoia: "81dd73d4690dd07f332724e37150a8a9d77e43841c421b3febd4dc57f4f28dda"
+    sha256 arm64_sonoma:  "2f69b5b62da5a8957ae89d486881f83ea481e9db033a9222acf80593870fccb8"
+    sha256 arm64_ventura: "2e20cf8df1bd24d0210c2f525b1b0d32211aeac76c1b6b1d8fb180a04310254b"
+    sha256 sonoma:        "2657b54ec053a034295a57b4debc08290ac9f92bf6d707b4ecf5069f1f45329a"
+    sha256 ventura:       "cde48931faeaae679ab0d0327e4d318f9c992557a172117d4b7cbf2332f6649a"
+    sha256 x86_64_linux:  "a5aa2d1690f334e34fa8c078c7fd37aedfcdeaeb0694e3a6ece1bdad4e2421f3"
   end
 
   depends_on "pkg-config" => :build
   depends_on "python@3.13" => :build
   depends_on "brotli"
   depends_on "c-ares"
-  depends_on "icu4c@75"
+  depends_on "icu4c@76"
   depends_on "libnghttp2"
   depends_on "libuv"
   depends_on "openssl@3"
@@ -66,7 +66,6 @@ class Node < Formula
     args = %W[
       --prefix=#{prefix}
       --without-npm
-      --without-corepack
       --with-intl=system-icu
       --shared-libuv
       --shared-nghttp2
@@ -169,7 +168,7 @@ class Node < Formula
     assert_predicate HOMEBREW_PREFIX/"bin/npm", :executable?, "npm must be executable"
     npm_args = ["-ddd", "--cache=#{HOMEBREW_CACHE}/npm_cache", "--build-from-source"]
     system HOMEBREW_PREFIX/"bin/npm", *npm_args, "install", "npm@latest"
-    system HOMEBREW_PREFIX/"bin/npm", *npm_args, "install", "ref-napi"
+    system HOMEBREW_PREFIX/"bin/npm", *npm_args, "install", "nan"
     assert_predicate HOMEBREW_PREFIX/"bin/npx", :exist?, "npx must exist"
     assert_predicate HOMEBREW_PREFIX/"bin/npx", :executable?, "npx must be executable"
     assert_match "< hello >", shell_output("#{HOMEBREW_PREFIX}/bin/npx --yes cowsay hello")

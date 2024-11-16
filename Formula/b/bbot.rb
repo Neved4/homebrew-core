@@ -3,17 +3,18 @@ class Bbot < Formula
 
   desc "OSINT automation tool"
   homepage "https://github.com/blacklanternsecurity/bbot"
-  url "https://files.pythonhosted.org/packages/cf/90/bc1e93d6bb2963f56c86cc7ac1a42953256575bc26a0d034661af6b3b3bb/bbot-2.1.0.tar.gz"
-  sha256 "fd51e0cf0631c619df8893c6a4c44d474c4957bb89067ad32fcde22003688fd4"
+  url "https://files.pythonhosted.org/packages/8c/3d/52618a163cb60c6d8ed53b364c2c984780881a918e6bb19dc6f11247ce58/bbot-2.1.2.tar.gz"
+  sha256 "896d8983af0effa96ee0203be8b2aa21ca95566123e4e17fef5dc66596c5811f"
   license "GPL-3.0-or-later"
+  revision 1
 
   bottle do
-    sha256 cellar: :any,                 arm64_sequoia: "f05c120e6fe6c628e0cf356f84a6af83acac6edc19657d1dc13ea8568b58c316"
-    sha256 cellar: :any,                 arm64_sonoma:  "ad35e2a859e98c99d3110c800b8c841b839a513fd83f593ed1fe289d153905c2"
-    sha256 cellar: :any,                 arm64_ventura: "b52c2d0062abf2208c7e9275d22d91f4d592e92ed47fabd1730d6c4506e4cbbf"
-    sha256 cellar: :any,                 sonoma:        "b1532f4b5a5faaee72e966808f619b1d9dd4e430ca211593c6a5d1726110753e"
-    sha256 cellar: :any,                 ventura:       "c0a62eaf17ffb5c809a43caa896906bb589cdc036f1ca432325c9e1a7c125ddc"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "c51c780ec6def898f164f516e5b44a1ba56fcc6a9d3b9cec16ec4bc4c752f67e"
+    sha256 cellar: :any,                 arm64_sequoia: "791ea33599d2df7d7ff75a63ed4d3563637018f0c7e59bfff7557802df11069b"
+    sha256 cellar: :any,                 arm64_sonoma:  "d1b3755dcda96b42400aca6e599e82595375317f6ebaf665db6c35943e8166dc"
+    sha256 cellar: :any,                 arm64_ventura: "fae5ccc078a8118dcfef332014abce3eea7a013b6200148b1d2096bd79106c33"
+    sha256 cellar: :any,                 sonoma:        "670b9381304573272f05614e97ba0c5d05004f686ea2600c2efb8f07f4f78f3a"
+    sha256 cellar: :any,                 ventura:       "f41e1a79cd90ce380fd845f086518ae08e3259997af9ccb2405db8f9a4a71612"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "898509365c668fa1859f73344abc896fdb2c8a3ccfb6cb83aed59b73c54c0465"
   end
 
   depends_on "cmake" => :build
@@ -42,8 +43,8 @@ class Bbot < Formula
   end
 
   resource "ansible-core" do
-    url "https://files.pythonhosted.org/packages/a1/fc/e81a2e2a6e4247444fe632c8ffaff5c1bcc3adf85ae87d08158724f419fd/ansible_core-2.15.12.tar.gz"
-    sha256 "5fde82cd3928d9857ad880782c644f27d3168b0f25321d5a8d6befa524aa1818"
+    url "https://files.pythonhosted.org/packages/69/dd/05343f635cb26df641c8366c5feb868ef5e2b893c625b04a6cb0cf1c7bfe/ansible_core-2.15.13.tar.gz"
+    sha256 "f542e702ee31fb049732143aeee6b36311ca48b7d13960a0685afffa0d742d7f"
   end
 
   resource "ansible-runner" do
@@ -89,11 +90,6 @@ class Bbot < Formula
   resource "dnspython" do
     url "https://files.pythonhosted.org/packages/b5/4a/263763cb2ba3816dd94b08ad3a33d5fdae34ecb856678773cc40a3605829/dnspython-2.7.0.tar.gz"
     sha256 "ce9c432eda0dc91cf618a5cedf1a4e142651196bbcd2c80e89ed5a907e5cfaf1"
-  end
-
-  resource "docutils" do
-    url "https://files.pythonhosted.org/packages/ae/ed/aefcc8cd0ba62a0560c3c18c33925362d46c6075480bfa4df87b28e169a9/docutils-0.21.2.tar.gz"
-    sha256 "3a6b18732edf182daa3cd12775bbb338cf5691468f91eeeb109deff6ebfa986f"
   end
 
   resource "filelock" do
@@ -167,8 +163,8 @@ class Bbot < Formula
   end
 
   resource "psutil" do
-    url "https://files.pythonhosted.org/packages/90/c7/6dc0a455d111f68ee43f27793971cf03fe29b6ef972042549db29eec39a2/psutil-5.9.8.tar.gz"
-    sha256 "6be126e3225486dff286a8fb9a06246a5253f4c7c53b475ea5f5ac934e64194c"
+    url "https://files.pythonhosted.org/packages/26/10/2a30b13c61e7cf937f4adf90710776b7918ed0a9c434e2c38224732af310/psutil-6.1.0.tar.gz"
+    sha256 "353815f59a7f64cdaca1c0307ee13558a0512f6db064e92fe833784f08539c7a"
   end
 
   resource "ptyprocess" do
@@ -197,8 +193,8 @@ class Bbot < Formula
   end
 
   resource "python-daemon" do
-    url "https://files.pythonhosted.org/packages/84/50/97b81327fccbb70eb99f3c95bd05a0c9d7f13fb3f4cfd975885110d1205a/python-daemon-3.0.1.tar.gz"
-    sha256 "6c57452372f7eaff40934a1c03ad1826bf5e793558e87fef49131e6464b4dae5"
+    url "https://files.pythonhosted.org/packages/54/cd/d62884732e5d6ff6906234169d06338d53e37243c60cf73679c8942f9e42/python_daemon-3.1.0.tar.gz"
+    sha256 "fdb621d7e5f46e74b4de1ad6b0fff6e69cd91b4f219de1476190ebdd0f4781df"
   end
 
   resource "pyyaml" do
@@ -242,8 +238,8 @@ class Bbot < Formula
   end
 
   resource "setuptools" do
-    url "https://files.pythonhosted.org/packages/07/37/b31be7e4b9f13b59cde9dcaeff112d401d49e0dc5b37ed4a9fc8fb12f409/setuptools-75.2.0.tar.gz"
-    sha256 "753bb6ebf1f465a1912e19ed1d41f403a79173a9acf66a42e7e6aec45c3c16ec"
+    url "https://files.pythonhosted.org/packages/ed/22/a438e0caa4576f8c383fa4d35f1cc01655a46c75be358960d815bfbb12bd/setuptools-75.3.0.tar.gz"
+    sha256 "fba5dd4d766e97be1b1681d98712680ae8f2f26d7881245f2ce9e40714f1a686"
   end
 
   resource "sniffio" do
@@ -267,8 +263,8 @@ class Bbot < Formula
   end
 
   resource "tldextract" do
-    url "https://files.pythonhosted.org/packages/db/ed/c92a5d6edaafec52f388c2d2946b4664294299cebf52bb1ef9cbc44ae739/tldextract-5.1.2.tar.gz"
-    sha256 "c9e17f756f05afb5abac04fe8f766e7e70f9fe387adb1859f0f52408ee060200"
+    url "https://files.pythonhosted.org/packages/4a/4f/eee4bebcbad25a798bf55601d3a4aee52003bebcf9e55fce08b91ca541a9/tldextract-5.1.3.tar.gz"
+    sha256 "d43c7284c23f5dc8a42fd0fee2abede2ff74cc622674e4cb07f514ab3330c338"
   end
 
   resource "typing-extensions" do
@@ -297,13 +293,13 @@ class Bbot < Formula
   end
 
   resource "xmltodict" do
-    url "https://files.pythonhosted.org/packages/58/40/0d783e14112e064127063fbf5d1fe1351723e5dfe9d6daad346a305f6c49/xmltodict-0.12.0.tar.gz"
-    sha256 "50d8c638ed7ecb88d90561beedbf720c9b4e851a9fa6c47ebd64e99d166d8a21"
+    url "https://files.pythonhosted.org/packages/50/05/51dcca9a9bf5e1bce52582683ce50980bcadbc4fa5143b9f2b19ab99958f/xmltodict-0.14.2.tar.gz"
+    sha256 "201e7c28bb210e374999d1dde6382923ab0ed1a8a5faeece48ab525b7810a553"
   end
 
   resource "xmltojson" do
-    url "https://files.pythonhosted.org/packages/dc/ed/1d658daeb13fdf59aa90984f94452e76c9ab494bb53bf3ad6cbd37e6e320/xmltojson-2.0.2.tar.gz"
-    sha256 "10719660409bd1825507e04d2fa4848c10591a092613bcd66651c7e0774f5405"
+    url "https://files.pythonhosted.org/packages/c5/bd/7ff42737e3715eaf0e46714776c2ce75c0d509c7b2e921fa0f94d031a1ff/xmltojson-2.0.3.tar.gz"
+    sha256 "68a0022272adf70b8f2639186172c808e9502cd03c0b851a65e0760561c7801d"
   end
 
   resource "yara-python" do
@@ -312,14 +308,7 @@ class Bbot < Formula
   end
 
   def install
-    venv = virtualenv_install_with_resources without: "python-daemon"
-
-    # Workaround breaking change in `setuptools`: https://pagure.io/python-daemon/issue/94
-    resource("python-daemon").stage do
-      inreplace "version.py", "import setuptools.extern.packaging.version", ""
-      inreplace "version.py", "self.validate_version(version)", ""
-      venv.pip_install Pathname.pwd
-    end
+    virtualenv_install_with_resources
   end
 
   test do

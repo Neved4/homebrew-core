@@ -1,8 +1,8 @@
 class Flowpipe < Formula
   desc "Cloud scripting engine"
   homepage "https://flowpipe.io"
-  url "https://github.com/turbot/flowpipe/archive/refs/tags/v1.0.0.tar.gz"
-  sha256 "c4d6f3f13de1b9027d2a9a33621afb16beb5b50c5586fb96b4ca1134d2521e92"
+  url "https://github.com/turbot/flowpipe/archive/refs/tags/v1.0.2.tar.gz"
+  sha256 "5e8a54ae8f26de64c7b0ee906bebe36396364ea3d7f2c9098ecf9585ba916f77"
   license "AGPL-3.0-only"
 
   # Upstream creates releases that use a stable tag (e.g., `v1.2.3`) but are
@@ -14,22 +14,25 @@ class Flowpipe < Formula
   end
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "c4912a0ba4e81fe164fd5d22f6acaae197cc0d0f809734d1db780ff1117b1ae3"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "07ed17a1667c62c9d95bfda314cb3d183e5e2928123c25d91cbccd5e674b16c2"
-    sha256 cellar: :any_skip_relocation, arm64_ventura: "ef27cf26884c8478c843590ed84dedf77bf23e29ac8bc949a1abac32d76eefa8"
-    sha256 cellar: :any_skip_relocation, sonoma:        "3fdf3f14c42a187e5f087743f7acf53e990303555427b3ded146557c828a4105"
-    sha256 cellar: :any_skip_relocation, ventura:       "8096e2502189ee3d8103a398a8c63703e2e5df3edafbee623d3d5216aebab9ed"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "7120e4d132f804a6b37ba253333056e3fe2c47ad0ce0a008da7585d2d89678ef"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "fc55463b2e57142c31f20e3a79a920aca266acf63d0d86ccd1a1ed05b4f2b766"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "2326c6d402c0d4190700cb93abca15c4f365a1d0a80708216092d50a8556f6b8"
+    sha256 cellar: :any_skip_relocation, arm64_ventura: "446396483feccbfead6753687098a7ef377a258593b3f6c2dbec93ea91c66a9a"
+    sha256 cellar: :any_skip_relocation, sonoma:        "223803a8a3fd787e5b065f308e3e49da0678059321467033ec203ded31cae0e8"
+    sha256 cellar: :any_skip_relocation, ventura:       "c0afd6b380a527805d1122c6957bbe6d707b0d82b86ea3c0d6574f4578d6ea0c"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "b9cb0359f1eea710d15fee1f34dd57d22b545710ddc06c8d6f42c22d4fd00ba0"
   end
 
-  depends_on "corepack" => :build
   depends_on "go" => :build
   depends_on "node" => :build
 
   def install
+    ENV["COREPACK_ENABLE_DOWNLOAD_PROMPT"] = "0"
+
+    system "corepack", "enable", "--install-directory", buildpath
+
     cd "ui/form" do
-      system "yarn", "install"
-      system "yarn", "build"
+      system buildpath/"yarn", "install"
+      system buildpath/"yarn", "build"
     end
 
     ldflags = %W[
@@ -46,11 +49,11 @@ class Flowpipe < Formula
     ENV["FLOWPIPE_INSTALL_DIR"] = testpath/".flowpipe"
     ENV["FLOWPIPE_CONFIG_PATH"] = testpath
 
-    (testpath/"flowpipe_config.yml").write <<~EOS
+    (testpath/"flowpipe_config.yml").write <<~YAML
       workspace:
         path: "#{testpath}/workspace"
       mods: []
-    EOS
+    YAML
 
     output = shell_output("#{bin}/flowpipe mod list")
     assert_match "No mods installed.", output

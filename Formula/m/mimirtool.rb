@@ -2,8 +2,8 @@ class Mimirtool < Formula
   desc "CLI for interacting with Grafana Mimir"
   homepage "https://grafana.com/docs/mimir/latest/operators-guide/tools/mimirtool/"
   url "https://github.com/grafana/mimir.git",
-        tag:      "mimir-2.14.0",
-        revision: "bc5a6ce2f67de0f5fbade9b000e4bf46d6d59518"
+        tag:      "mimir-2.14.2",
+        revision: "2db2c4d9de8565c52fcef3050b95b8a2808b407e"
   license "AGPL-3.0-only"
   head "https://github.com/grafana/mimir.git", branch: "main"
 
@@ -17,16 +17,15 @@ class Mimirtool < Formula
   end
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "772bc3ad5a4b700aa420e409e8152a0c99b8d07e5b8062f1861ed52d80e2d3f9"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "6b4677a015f7761cc4f992fea1dd41febc3e87bbde642ba9ac893edc60763209"
-    sha256 cellar: :any_skip_relocation, arm64_ventura: "8945e68dca18ab470d3f7925cea5b96b38c350a88bc0e73043e6e24acfbde098"
-    sha256 cellar: :any_skip_relocation, sonoma:        "4fb7a0eef2d0f3a56c2fefcdb4184adb60cf7459174e112fc443f0f5f8c88939"
-    sha256 cellar: :any_skip_relocation, ventura:       "ec15a22a4e42b444d0b87a7c6d9927b8522242e2d7551dcf8494b246503a9a0e"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "5ad84a06e157e494a8311b2c6727a88fc97ce5fa117a6ec0bf5061f8432b6f03"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "3abd5840c227d7988dfc5db4e981acd6a707c7f5d50b69d616302ed7ea32edef"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "1d78c51021842d6c9d0f38fca782b7fe488f267c00134b0c3450068a2a0007d1"
+    sha256 cellar: :any_skip_relocation, arm64_ventura: "76a7490e63b9c523f733b2d58845294162e7b010be31caacf7fe183a98492f8f"
+    sha256 cellar: :any_skip_relocation, sonoma:        "7109d9d397c08d3a878e72afd974695e87dace96902d647882afeca6f1c71021"
+    sha256 cellar: :any_skip_relocation, ventura:       "9b72abe29d092897fa274a8721d0384019a0aa54b6ee3d948d285f2a722b3682"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "02f4e83812fa70f6f78390e5a90b9385aabfe12fa37d118fbef270b7310061d7"
   end
 
-  # use "go" again after https://github.com/grafana/mimir/issues/9033 is fixed and released
-  depends_on "go@1.22" => :build
+  depends_on "go" => :build
 
   def install
     system "make", "BUILD_IN_CONTAINER=false", "GENERATE_FILES=false", "cmd/mimirtool/mimirtool"

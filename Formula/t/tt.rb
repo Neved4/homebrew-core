@@ -1,17 +1,17 @@
 class Tt < Formula
   desc "Command-line utility to manage Tarantool applications"
   homepage "https://github.com/tarantool/tt"
-  url "https://github.com/tarantool/tt/releases/download/v2.5.0/tt-2.5.0-complete.tar.gz"
-  sha256 "aac32608eef800e2d1742e94dfb35fb3f06d40584d6387c03b79e20233db5512"
+  url "https://github.com/tarantool/tt/releases/download/v2.5.2/tt-2.5.2-complete.tar.gz"
+  sha256 "c3312a6965f1cb51f76a828733aa84e7807d0018271456a0d70e42962b51b4c8"
   license "BSD-2-Clause"
 
   bottle do
-    sha256 cellar: :any,                 arm64_sequoia: "f1925c0a9063dca3df87efc214c54e7dc31e606a9e1c8ff56d989218c16eb86f"
-    sha256 cellar: :any,                 arm64_sonoma:  "c5fccaa916c393eea0be0a34855d8b4d88cc58c0940be1825dd985966129a7e7"
-    sha256 cellar: :any,                 arm64_ventura: "dcf3624897c709765465595090f73cdc0c417fc84bac6b23862d06e5e57b6302"
-    sha256                               sonoma:        "c8d79c86fab7edcbcc2dd9af18199f5be6950d885822b3940bacf02856b3d9d8"
-    sha256                               ventura:       "5de457c2e4c7a081ca401f1a15a5c463743a8283a2b3bd4594ccef4c59165dee"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "47e61b3c3a437e5768af70a7b30a9520857502a04194b4a8cd38d2520c1727af"
+    sha256 cellar: :any,                 arm64_sequoia: "9ea709520820dabe222c65fd5be978f5973e3e09db5f30a62bb916c0ebb6b91d"
+    sha256 cellar: :any,                 arm64_sonoma:  "3fe472511a8766e5c75d3d936b6e9fc1c243218121a3a3faab5b10744c724ee9"
+    sha256 cellar: :any,                 arm64_ventura: "f6a4feee47e8dbaa01b4222bb56f4e92cf8a3e15ddefe33dfd41bbe8b1da76e2"
+    sha256                               sonoma:        "0a99c40640581b47f329a25eb36163a9f3de15397793fb2b49690dfbef8e3abc"
+    sha256                               ventura:       "de982ed920e80e98b33a86b0556f82db2cca09ca8ad18d7be75fd95b9ef3269b"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "2f7d31095f5423bed8b6f2108985a85a2387017382b32317f289ea4c3933c1d5"
   end
 
   depends_on "go" => :build

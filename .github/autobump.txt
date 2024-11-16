@@ -89,6 +89,7 @@ argocd
 argocd-autopilot
 argocd-vault-plugin
 argparse
+argus
 argus-clients
 argyll-cms
 arjun
@@ -209,6 +210,7 @@ beakerlib
 beancount
 beancount-language-server
 bear
+beautysh
 bed
 bee
 bench
@@ -218,6 +220,7 @@ bettercap
 bfs
 bgpq4
 biber
+bibtex-tidy
 bibtexconv
 bigloo
 bigquery-emulator
@@ -261,6 +264,7 @@ bowtie2
 box2d
 boxes
 bpftop
+braid
 breezy
 brev
 brew-php-switcher
@@ -397,12 +401,12 @@ chatblade
 cheat
 check-jsonschema
 checkbashisms
-checkdmarc
 checkmake
 checkov
 checkstyle
 cherrytree
 chezmoi
+chezscheme
 chibi-scheme
 chicken
 chisel-tunnel
@@ -487,6 +491,7 @@ coin3d
 coinutils
 colima
 colmap
+commandbox
 commitizen
 commitlint
 composer
@@ -510,7 +515,6 @@ copilot
 coq
 core-lightning
 coredns
-corepack
 coreutils
 corral
 corrosion
@@ -525,6 +529,7 @@ countdown
 counterfeiter
 coursier
 cp2k
+cpanminus
 cpi
 cpm
 cpp-gsl
@@ -545,9 +550,11 @@ crispy-doom
 croaring
 croc
 cromwell
+crossplane
 crow
 crowdin
 crun
+cryfs
 cryptography
 cryptol
 cryptominisat
@@ -570,6 +577,7 @@ cups
 curl
 cvs-fast-export
 cweb
+cxgo
 cxxopts
 cyclonedx-gomod
 cyclonedx-python
@@ -621,6 +629,7 @@ deployer
 der-ascii
 derby
 descope
+desktop-file-utils
 detect-secrets
 detekt
 detox
@@ -642,6 +651,7 @@ dicebear
 diesel
 diffoci
 diffoscope
+diffstat
 difftastic
 digdag
 dillo
@@ -655,6 +665,7 @@ dive
 django-completion
 djhtml
 djl-serving
+djlint
 dlib
 dmenu
 dnscontrol
@@ -816,6 +827,7 @@ eva
 evince
 evtx
 exercism
+exiftool
 exim
 exiv2
 exodriver
@@ -850,6 +862,8 @@ fauna-shell
 faust
 favirecon
 fblog
+fcft
+fcgi
 fclones
 fd
 fdk-aac-encoder
@@ -878,6 +892,7 @@ fierce
 fig2dev
 file-roller
 filebeat
+fileql
 findent
 findomain
 findutils
@@ -896,6 +911,7 @@ flatbuffers
 flawz
 fleet-cli
 flint
+flit
 flix
 flowpipe
 fluent-bit
@@ -910,11 +926,13 @@ fn
 fnlfmt
 fnm
 fnt
+fobis
 folderify
 fontconfig
 fontforge
 fonts-encodings
 fonttools
+foot
 fop
 forbidden
 forcecli
@@ -928,6 +946,7 @@ fossil
 fourmolu
 fourstore
 fping
+fplll
 fq
 fred
 freeciv
@@ -1090,6 +1109,7 @@ goffice
 gofumpt
 gojq
 gokey
+goku
 golang-migrate
 golangci-lint
 golangci-lint-langserver
@@ -1126,6 +1146,7 @@ gowsdl
 gpac
 gperftools
 gpg-tui
+gpgme
 gprof2dot
 gpsim
 gptme
@@ -1174,8 +1195,10 @@ gucharmap
 guile
 gulp-cli
 gum
+gumbo-parser
 gupnp
 gupnp-tools
+gwt
 gwyddion
 gxml
 gyb
@@ -1301,6 +1324,7 @@ ipmiutil
 ipopt
 iproute2
 ipsw
+iptables
 iputils
 ipv6calc
 ipython
@@ -1314,6 +1338,7 @@ istioctl
 isync
 itk
 ittapi
+ivtools
 ivy
 ivykis
 jabba
@@ -1351,6 +1376,7 @@ jose
 jp2a
 jpeg-turbo
 jpeg-xl
+jprq
 jql
 jr
 jreleaser
@@ -1473,6 +1499,7 @@ kyma-cli
 kyverno
 lacework-cli
 lando-cli
+langgraph-cli
 languagetool
 lanraragi
 lastpass-cli
@@ -1481,6 +1508,7 @@ latex2html
 latexdiff
 latexindent
 latexml
+latino
 lazydocker
 lbdb
 lc0
@@ -1506,6 +1534,7 @@ lexicon
 lexido
 lf
 lfe
+lftp
 lgogdownloader
 libabigail
 libadwaita
@@ -1536,6 +1565,7 @@ libdpp
 libdrm
 libedit
 libepoxy
+libetonyek
 libewf
 libfabric
 libffcall
@@ -1550,6 +1580,8 @@ libgedit-gfls
 libgedit-gtksourceview
 libgeotiff
 libgetdata
+libgit2
+libgit2@1.7
 libgpg-error
 libgr
 libgsf
@@ -1593,6 +1625,7 @@ libomp
 libopenmpt
 liboqs
 liborigin
+libosinfo
 libpanel
 libpano
 libpcap
@@ -1710,6 +1743,7 @@ lndir
 localai
 localstack
 locust
+log4cplus
 log4cxx
 logdy
 logrotate
@@ -1765,6 +1799,7 @@ mariadb@10.11
 mariadb@10.5
 mariadb@10.6
 mariadb@11.2
+mariadb@11.4
 markdownlint-cli
 markdownlint-cli2
 marked
@@ -1793,6 +1828,7 @@ mediaconch
 mediamtx
 mednafen
 medusa
+megatools
 meilisearch
 melange
 melody
@@ -1809,6 +1845,7 @@ mfem
 micro
 micromamba
 micronaut
+microplane
 micropython
 microsocks
 mighttpd2
@@ -1822,7 +1859,9 @@ minder
 minetest
 minica
 minigraph
+minijinja-cli
 minikube
+minimal-racket
 minipro
 miniserve
 miniupnpc
@@ -1847,6 +1886,7 @@ mockserver
 moco
 mods
 modsecurity
+modules
 mold
 molecule
 monero
@@ -1888,6 +1928,7 @@ mu
 mubeng
 muffet
 mujs
+multi-git-status
 multitail
 muon
 murex
@@ -1953,6 +1994,7 @@ nftables
 nginx
 ngt
 nickel
+nickle
 nifi
 nifi-registry
 nim
@@ -1968,6 +2010,7 @@ node-build
 node-sass
 node@18
 node@20
+node@22
 node_exporter
 nodeenv
 nomino
@@ -1975,6 +2018,7 @@ nopoll
 noseyparker
 notation
 notcurses
+notify
 nox
 npm-check-updates
 npth
@@ -2030,10 +2074,12 @@ oksh
 okta-aws-cli
 okta-awscli
 okteto
+ol
 ollama
 omega
 omniorb
 onednn
+onedpl
 onedrive
 onion-location
 onionprobe
@@ -2073,6 +2119,9 @@ openjdk@8
 openjpeg
 openjph
 openldap
+openliberty-jakartaee8
+openliberty-microprofile4
+openliberty-webprofile8
 openlibm
 openrct2
 openrtsp
@@ -2106,6 +2155,7 @@ osc
 osctrl-cli
 osi
 osinfo-db
+osinfo-db-tools
 osm2pgsql
 ospray
 osslsigncode
@@ -2143,6 +2193,7 @@ parsedmarc
 partio
 pass-git-helper
 passenger
+passt
 pastel
 patat
 patchelf
@@ -2207,6 +2258,7 @@ pipx
 pivit
 pixi
 pixie
+pixman
 pkgconf
 pkl
 plantuml
@@ -2327,6 +2379,7 @@ python-build
 python-launcher
 python-markdown
 python-matplotlib
+python-packaging
 python-setuptools
 python-yq
 pythran
@@ -2365,8 +2418,11 @@ r
 rabbitmq
 radamsa
 radare2
+rage
 railway
+rakudo-star
 rancher-cli
+ranger
 rapidfuzz-cpp
 ratchet
 rattler-build
@@ -2381,6 +2437,7 @@ rdb
 re-flex
 readpe
 rebar3
+recc
 recode
 recoverpy
 redict
@@ -2403,6 +2460,7 @@ restview
 resvg
 retire
 revive
+rex
 rgbds
 rhash
 rhit
@@ -2414,6 +2472,7 @@ risor
 river
 rizin
 rke
+rmw
 roadrunner
 roapi
 robin-map
@@ -2439,6 +2498,7 @@ rsgain
 rswift
 rsyncy
 rsyslog
+rtl_433
 rtorrent
 rubberband
 ruby
@@ -2471,7 +2531,6 @@ s3scanner
 s6
 sad
 saf-cli
-safety
 sagittarius-scheme
 samba
 saml2aws
@@ -2491,6 +2550,7 @@ sccache
 sceptre
 schema-evolution-manager
 schemathesis
+scheme48
 scikit-image
 scilla
 scip
@@ -2513,6 +2573,7 @@ sdl2
 seal
 seam
 seaweedfs
+sec
 secp256k1
 securefs
 selene
@@ -2520,12 +2581,15 @@ selenium-server
 semgrep
 sentencepiece
 seqkit
+sequoia-sq
 ser2net
 serialosc
 serpl
 serverless
 service-weaver
+sf
 sfcgal
+sfml
 sh4d0wup
 shaderc
 shadowenv
@@ -2545,6 +2609,7 @@ shtools
 shub
 shuffledns
 shush
+siege
 sigi
 sigma-cli
 signal-cli
@@ -2587,6 +2652,7 @@ smug
 sn0int
 snakefmt
 snakemake
+snakeviz
 snap
 snapcast
 snapcraft
@@ -2635,6 +2701,7 @@ spotbugs
 spotify_player
 sql-migrate
 sqlancer
+sqlboiler
 sqlc
 sqlcipher
 sqlcmd
@@ -2655,6 +2722,7 @@ srt
 srtp
 ssh-audit
 sshs
+ssldump
 sslh
 sslscan
 ssocr
@@ -2721,6 +2789,7 @@ syncthing
 sysaidmin
 sysdig
 syslog-ng
+sysprof
 sysstat
 systemc
 systemd
@@ -2765,6 +2834,7 @@ tengo
 tenv
 tere
 terminator
+termscp
 termshark
 terracognita
 terraform-inventory
@@ -2838,6 +2908,7 @@ topfew
 topgrade
 tor
 tox
+toxcore
 toxiproxy
 tproxy
 tracy
@@ -2899,13 +2970,16 @@ unicorn
 unison
 unisonlang
 universal-ctags
+unxip
 urdfdom
 urdfdom_headers
 uriparser
 urlscan
 usb.ids
 usbredir
+usbutils
 userspace-rcu
+utf8cpp
 util-linux
 util-macros
 uutils-coreutils
@@ -3010,6 +3084,7 @@ wcurl
 weasyprint
 web-ext
 webdis
+webhook
 webkitgtk
 webp
 webpack
@@ -3018,19 +3093,23 @@ webtorrent-cli
 weechat
 wego
 werf
+west
 wgcf
 whistle
 whois
+widelands
 wikibase-cli
 wildfly-as
 wildmidi
 wimlib
+wiredtiger
 wireguard-go
 wiremock-standalone
 wireshark
 witness
 wolfmqtt
 wolfssl
+woob
 woodpecker-cli
 woof-doom
 wpebackend-fdo
@@ -3125,6 +3204,7 @@ zfind
 zig
 zigmod
 zipkin
+zizmor
 zk
 zlib
 zlib-ng
@@ -3139,6 +3219,7 @@ zookeeper
 zoro
 zoxide
 zpaqfranz
+zsh-autosuggestions
 zsh-vi-mode
 zsh-you-should-use
 zshdb

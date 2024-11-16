@@ -7,8 +7,7 @@ class LlvmAT14 < Formula
   license "Apache-2.0" => { with: "LLVM-exception" }
 
   livecheck do
-    url :stable
-    regex(/^llvmorg[._-]v?(14(?:\.\d+)+)$/i)
+    skip "No longer developed or maintained"
   end
 
   bottle do
@@ -313,14 +312,14 @@ class LlvmAT14 < Formula
       }
     C
 
-    (testpath/"test.cpp").write <<~EOS
+    (testpath/"test.cpp").write <<~CPP
       #include <iostream>
       int main()
       {
         std::cout << "Hello World!" << std::endl;
         return 0;
       }
-    EOS
+    CPP
 
     # Testing default toolchain and SDK location.
     system bin/"clang++", "-v",
@@ -406,13 +405,13 @@ class LlvmAT14 < Formula
         refute_match(/libunwind/, lib)
       end
 
-      (testpath/"test_plugin.cpp").write <<~EOS
+      (testpath/"test_plugin.cpp").write <<~CPP
         #include <iostream>
         __attribute__((visibility("default")))
         extern "C" void run_plugin() {
           std::cout << "Hello Plugin World!" << std::endl;
         }
-      EOS
+      CPP
       (testpath/"test_plugin_main.c").write <<~C
         extern void run_plugin();
         int main() {
@@ -435,7 +434,7 @@ class LlvmAT14 < Formula
       end
     else
       # FIXME: scan-build test appears to be broken on Linux.
-      (testpath/"scanbuildtest.cpp").write <<~EOS
+      (testpath/"scanbuildtest.cpp").write <<~CPP
         #include <iostream>
         int main() {
           int *i = new int;
@@ -444,7 +443,7 @@ class LlvmAT14 < Formula
           std::cout << *i << std::endl;
           return 0;
         }
-      EOS
+      CPP
       assert_includes shell_output("#{bin}/scan-build clang++ scanbuildtest.cpp 2>&1"),
         "warning: Use of memory after it is freed"
     end

@@ -1,10 +1,9 @@
 class NodeAT18 < Formula
   desc "Platform built on V8 to build network applications"
   homepage "https://nodejs.org/"
-  url "https://nodejs.org/dist/v18.20.4/node-v18.20.4.tar.xz"
-  sha256 "a76c7ea1b96aeb6963a158806260c8094b6244d64a696529d020547b9a95ca2a"
+  url "https://nodejs.org/dist/v18.20.5/node-v18.20.5.tar.xz"
+  sha256 "76037b9bad0ab9396349282dbfcec1b872ff7bd8c8d698853bebd982940858bf"
   license "MIT"
-  revision 1
 
   livecheck do
     url "https://nodejs.org/dist/"
@@ -12,12 +11,12 @@ class NodeAT18 < Formula
   end
 
   bottle do
-    sha256 arm64_sequoia: "d380182d1f56e38f240355a650a2574dcf40de6be0c746a1955728df89815494"
-    sha256 arm64_sonoma:  "e7556ecd9d8553dee6736900e11bc3a65994e3ee6747332dd716daa0ab58d52b"
-    sha256 arm64_ventura: "7a8ae272cde099a2e3efa70f91bc315c67688cd602126dcd5d3d6861b62bf0fa"
-    sha256 sonoma:        "2c8a9eabf8f95ff26c0550665336f395574e50e9a5c441c62140fc2ecd2dbe12"
-    sha256 ventura:       "ea38619b3af837165fb11aa3038c5c11c47ae8eb5c5fd9b7d1b78f22dc78bf05"
-    sha256 x86_64_linux:  "766f4312b10705111eedd0ec8e08686f265ca4c72214977ed609515066928dd9"
+    sha256 arm64_sequoia: "434f258d8fc32a3b1fff91bb529069a51bf1e9c79e7d834c70685a408cd7e2ec"
+    sha256 arm64_sonoma:  "a09d36a1b0f782ebaa36e170f6789e314cf1c830989d0e7bf8da39ec35234c42"
+    sha256 arm64_ventura: "a5f3760650bec4fffc5f669c9b13dfceeb5e826748828740c142155e6240cf21"
+    sha256 sonoma:        "19d6b4a6582578ee3a1ce412da80c5f63c506874f571912d49e6a16f8b9ffd66"
+    sha256 ventura:       "67e2434b0f770cdf0b77832912e9d71d847529ff98085fbc995c7f2b299c9342"
+    sha256 x86_64_linux:  "a1fa241b673cf2269c80237c39ccf6687ea9b3e4dd2513fb1a8cc6c0fc73e2b2"
   end
 
   keg_only :versioned_formula
@@ -31,7 +30,7 @@ class NodeAT18 < Formula
   depends_on "python@3.13" => :build
   depends_on "brotli"
   depends_on "c-ares"
-  depends_on "icu4c@75"
+  depends_on "icu4c@76"
   depends_on "libnghttp2"
   depends_on "libuv"
   depends_on "openssl@3"
@@ -51,6 +50,12 @@ class NodeAT18 < Formula
   end
 
   fails_with gcc: "5"
+
+  # Backport support for ICU 76+
+  patch do
+    url "https://github.com/nodejs/node/commit/81517faceac86497b3c8717837f491aa29a5e0f9.patch?full_index=1"
+    sha256 "79a5489617665c5c88651a7dc364b8967bebdea5bdf361b85572d041a4768662"
+  end
 
   # py3.13 build patch
   patch :DATA

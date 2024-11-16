@@ -1,10 +1,9 @@
 class Libxml2 < Formula
   desc "GNOME XML library"
   homepage "http://xmlsoft.org/"
-  url "https://download.gnome.org/sources/libxml2/2.13/libxml2-2.13.4.tar.xz"
-  sha256 "65d042e1c8010243e617efb02afda20b85c2160acdbfbcb5b26b80cec6515650"
+  url "https://download.gnome.org/sources/libxml2/2.13/libxml2-2.13.5.tar.xz"
+  sha256 "74fc163217a3964257d3be39af943e08861263c4231f9ef5b496b6f6d4c7b2b6"
   license "MIT"
-  revision 2
 
   # We use a common regex because libxml2 doesn't use GNOME's "even-numbered
   # minor is stable" version scheme.
@@ -14,12 +13,12 @@ class Libxml2 < Formula
   end
 
   bottle do
-    sha256 cellar: :any,                 arm64_sequoia: "e3da26e48d36ae965d6b6382868b8c4e76819255d961b9d50f0e907e027f2196"
-    sha256 cellar: :any,                 arm64_sonoma:  "d05f1c3c1ac62a534fd64a5b6b9242381e2ddd85afe3d91bed859c908c586215"
-    sha256 cellar: :any,                 arm64_ventura: "c455c5e0f4d98beade4bc108a9e810da9af9b63245624c7688420d342a59c2d6"
-    sha256 cellar: :any,                 sonoma:        "f2025b32b04925a6586ab983660435d2d678ea321bf671f9455d8c1d68ee4442"
-    sha256 cellar: :any,                 ventura:       "274643e3f77ebffc1f4c38082453c1c15446f277e233ac07a5006b5c63c1cb6e"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "e93c2ad1c67a4e949a149d3d742bd672b37259d15bb765930b25ccae582ed7bf"
+    sha256 cellar: :any,                 arm64_sequoia: "102e5b38b5b0b5684ae3d93bc46d8b88f2e9a24c11037259dce62c98ffcc441e"
+    sha256 cellar: :any,                 arm64_sonoma:  "199930ce1a2ccfffb601b6c0184d654ba63b17d23405bfd6a8d03ebb63c9949f"
+    sha256 cellar: :any,                 arm64_ventura: "0409c964334828f8ff5da217513e5a53ca3eb4d217aec3b33e4f0a05e89b61fe"
+    sha256 cellar: :any,                 sonoma:        "e35e0281a720de96d33744f08af0e3042ccb88c6f235ed7319d638bb9b731f07"
+    sha256 cellar: :any,                 ventura:       "89a2efeccbbe3c5beb5ce925d33b7bf23a1565dcc51b206d2c08c279311f1914"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "824b48add1fdaac3fdebf652d9b1a9c03977829c803ef5b36623da600dd22266"
   end
 
   head do
@@ -33,11 +32,11 @@ class Libxml2 < Formula
 
   keg_only :provided_by_macos
 
-  depends_on "python@3.11" => [:build, :test]
+  depends_on "python-setuptools" => :build
   depends_on "python@3.12" => [:build, :test]
   depends_on "python@3.13" => [:build, :test]
   depends_on "pkg-config" => :test
-  depends_on "icu4c@75"
+  depends_on "icu4c@76"
   depends_on "readline"
 
   uses_from_macos "zlib"
@@ -56,45 +55,47 @@ class Libxml2 < Formula
     ENV.append "CFLAGS", "-std=gnu11" if OS.linux?
 
     system "autoreconf", "--force", "--install", "--verbose" if build.head?
-    system "./configure", *std_configure_args,
+    system "./configure", "--disable-silent-rules",
                           "--sysconfdir=#{etc}",
-                          "--disable-silent-rules",
                           "--with-history",
                           "--with-http",
                           "--with-icu",
+                          "--with-legacy", # https://gitlab.gnome.org/GNOME/libxml2/-/issues/751#note_2157870
+                          "--without-lzma",
                           "--without-python",
-                          "--without-lzma"
+                          *std_configure_args
     system "make", "install"
 
-    cd "python" do
-      sdk_include = if OS.mac?
-        sdk = MacOS.sdk_path_if_needed
-        sdk/"usr/include" if sdk
-      else
-        HOMEBREW_PREFIX/"include"
-      end
+    icu4c = deps.find { |dep| dep.name.match?(/^icu4c(@\d+)?$/) }
+                .to_formula
+    inreplace [bin/"xml2-config", lib/"pkgconfig/libxml-2.0.pc"], icu4c.prefix.realpath, icu4c.opt_prefix
 
-      includes = [include, sdk_include].compact.map do |inc|
-        "'#{inc}',"
-      end.join(" ")
+    sdk_include = if OS.mac?
+      sdk = MacOS.sdk_path_if_needed
+      sdk/"usr/include" if sdk
+    else
+      HOMEBREW_PREFIX/"include"
+    end
 
-      # We need to insert our include dir first
-      inreplace "setup.py", "includes_dir = [",
-                            "includes_dir = [#{includes}"
+    includes = [include, sdk_include].compact.map do |inc|
+      "'#{inc}',"
+    end.join(" ")
 
-      # Needed for Python 3.12+.
-      # https://github.com/Homebrew/homebrew-core/pull/154551#issuecomment-1820102786
-      with_env(PYTHONPATH: buildpath/"python") do
-        pythons.each do |python|
-          build_isolation = Language::Python.major_minor_version(python) >= "3.12"
-          system python, "-m", "pip", "install", *std_pip_args(build_isolation:), "."
-        end
+    # We need to insert our include dir first
+    inreplace "python/setup.py", "includes_dir = [",
+                                 "includes_dir = [#{includes}"
+
+    # Needed for Python 3.12+.
+    # https://github.com/Homebrew/homebrew-core/pull/154551#issuecomment-1820102786
+    with_env(PYTHONPATH: buildpath/"python") do
+      pythons.each do |python|
+        system python, "-m", "pip", "install", *std_pip_args, "./python"
       end
     end
   end
 
   test do
-    (testpath/"test.c").write <<~EOS
+    (testpath/"test.c").write <<~C
       #include <libxml/tree.h>
 
       int main()
@@ -105,7 +106,7 @@ class Libxml2 < Formula
         xmlFreeDoc(doc);
         return 0;
       }
-    EOS
+    C
 
     # Test build with xml2-config
     args = shell_output("#{bin}/xml2-config --cflags --libs").split

@@ -1,10 +1,24 @@
 class TreeSitter < Formula
   desc "Parser generator tool and incremental parsing library"
   homepage "https://tree-sitter.github.io/"
-  url "https://github.com/tree-sitter/tree-sitter/archive/refs/tags/v0.24.3.tar.gz"
-  sha256 "0a8d0cf8e09caba22ed0d8439f7fa1e3d8453800038e43ccad1f34ef29537da1"
   license "MIT"
   head "https://github.com/tree-sitter/tree-sitter.git", branch: "master"
+
+  # Remove stable block when patch is no longer needed.
+  stable do
+    url "https://github.com/tree-sitter/tree-sitter/archive/refs/tags/v0.24.4.tar.gz"
+    sha256 "d704832a6bfaac8b3cbca3b5d773cad613183ba8c04166638af2c6e5dfb9e2d2"
+
+    # Fix Neovim freezing in some configurations.
+    # See: https://github.com/neovim/neovim/issues/31163
+    #      https://github.com/tree-sitter/tree-sitter/issues/3930
+    #      https://github.com/tree-sitter/tree-sitter/pull/3898
+    # Remove in next release.
+    patch do
+      url "https://github.com/tree-sitter/tree-sitter/commit/5d1be545c439eba4810f34a14fef17e5f76df6c0.patch?full_index=1"
+      sha256 "5c083354226f945992ec401a6c469b2a7bf9419d7599bca749254b3b28c841ea"
+    end
+  end
 
   livecheck do
     url :stable
@@ -12,12 +26,13 @@ class TreeSitter < Formula
   end
 
   bottle do
-    sha256 cellar: :any,                 arm64_sequoia: "2a00912caca6753ad531eee46172ed9335587bacabf405cc8deb8091f1918941"
-    sha256 cellar: :any,                 arm64_sonoma:  "5bea44eda513618e12b7bf69ca1689a4d754a4f973c261ca0d4ffbc95c0f3050"
-    sha256 cellar: :any,                 arm64_ventura: "eab336b8be8cebf8aa0b47fac7c7524d3409148294ede2a372595e797e5049e5"
-    sha256 cellar: :any,                 sonoma:        "cb196846cb0c0bf1a2168112a5e171d7c61a872805348accdf38d878d2a51fa7"
-    sha256 cellar: :any,                 ventura:       "f95045d2e440439f0f2c2b7f467b20172e053be1048ec5439cbc7c7ca3bf0c0e"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "b3bb5e922d600521bf862ad5a83bff9215888e513f626f40bf87b0136b1407d8"
+    rebuild 1
+    sha256 cellar: :any,                 arm64_sequoia: "b4932e1ed3dd2a8fef9ec480f3bf5175005badefa432f7f2f255cb648a032790"
+    sha256 cellar: :any,                 arm64_sonoma:  "2008cda365e4dbf3e530236811fa37f2a14e65418fdf90e4b7dbd585a076325a"
+    sha256 cellar: :any,                 arm64_ventura: "4c69b394b5dcff232bc9662abfa3d38865ce5d8aced92565107b1ced4a9666cb"
+    sha256 cellar: :any,                 sonoma:        "9e10a26f5bd3d668720bb7cb152f9985fd0b758b07fbe7e56b3bc15c39172129"
+    sha256 cellar: :any,                 ventura:       "037379b3381b736dc9cdb8109db8726a9f80cb8d785077f7b85bead89f910306"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "1887aaeef0cf0e07a7e8570332b875a70fd25a6cf0c18c76fe3a7a919a59f5d8"
   end
 
   depends_on "rust" => :build
@@ -61,7 +76,7 @@ class TreeSitter < Formula
     EOS
     system bin/"tree-sitter", "test"
 
-    (testpath/"test_program.c").write <<~EOS
+    (testpath/"test_program.c").write <<~C
       #include <stdio.h>
       #include <string.h>
       #include <tree_sitter/api.h>
@@ -87,7 +102,7 @@ class TreeSitter < Formula
         ts_parser_delete(parser);
         return 0;
       }
-    EOS
+    C
     system ENV.cc, "test_program.c", "-L#{lib}", "-ltree-sitter", "-o", "test_program"
     assert_equal "tree creation failed", shell_output("./test_program")
   end

@@ -1,8 +1,8 @@
 class Emqx < Formula
   desc "MQTT broker for IoT"
   homepage "https://www.emqx.io/"
-  url "https://github.com/emqx/emqx/archive/refs/tags/v5.8.0.tar.gz"
-  sha256 "dcacbe46468d16bcf8eb9cf8fb4d3326543fd5f23dc9dd00c846430423b011a4"
+  url "https://github.com/emqx/emqx/archive/refs/tags/v5.8.2.tar.gz"
+  sha256 "70e008856836c437c82f4123cf3c353d91dfd64b66ef27bba7924fe6ecec5c45"
   license "Apache-2.0"
   head "https://github.com/emqx/emqx.git", branch: "master"
 
@@ -15,12 +15,12 @@ class Emqx < Formula
   end
 
   bottle do
-    sha256 cellar: :any,                 arm64_sequoia: "01b3613a0e05709eaa48f9cfb513d3930276d74291fe64a2bf37fb57159cefbd"
-    sha256 cellar: :any,                 arm64_sonoma:  "0ba9f5a7b282d3d6e3a069ddd709223c4f350bc865f1ddabd6d0f183b5b17e23"
-    sha256 cellar: :any,                 arm64_ventura: "214e7a0e6b6fbea90980484243f21bdfa81f132405b698fb64dbfbe24bfe457e"
-    sha256 cellar: :any,                 sonoma:        "f9b42cdb13bde70e43ea988541205f11dfa9a0c0fbb660ce1392eca68a6def2d"
-    sha256 cellar: :any,                 ventura:       "643c0e23b20e14e3d1122735e359aaffe32e566ad85c23b3e8a6680585454f78"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "4af003e1799e922393423f6474df79879481050913eb224cdc8bb7735870fb5c"
+    sha256 cellar: :any,                 arm64_sequoia: "f0f5534af44d92db903230fc02dd3ec3ec190417c4f3d063ff038ae20291a412"
+    sha256 cellar: :any,                 arm64_sonoma:  "72b0c2453957e3865d4e251bb1622a994a53e9a017be6395598c95aa588d9ff3"
+    sha256 cellar: :any,                 arm64_ventura: "13be08bbbd359884186010f505817cf30fda49bfb809f57979e4136b7a3e600d"
+    sha256 cellar: :any,                 sonoma:        "5743534ae79346a53bb7d9fe9f70e17edc0b9c1c4240de6d36d797d743dc920f"
+    sha256 cellar: :any,                 ventura:       "8f6d76aba2c0116f1dbb2cafdc2d3474e6958e84b35637c1d5d754db7734f75a"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "fed0430de39d50c5c60ef4d38b5d8646095b03775e6fa48d676d34623b66ca22"
   end
 
   depends_on "autoconf"  => :build
@@ -44,8 +44,6 @@ class Emqx < Formula
   end
 
   conflicts_with "cassandra", because: "both install `nodetool` binaries"
-
-  patch :DATA
 
   def install
     ENV["PKG_VSN"] = version.to_s
@@ -77,6 +75,10 @@ class Emqx < Formula
     end
   end
 
+  service do
+    run [opt_bin/"emqx", "foreground"]
+  end
+
   test do
     exec "ln", "-s", testpath, "data"
     exec bin/"emqx", "start"
@@ -84,55 +86,3 @@ class Emqx < Formula
     system bin/"emqx", "stop"
   end
 end
-
-__END__
-diff --git a/apps/emqx_auth_kerberos/rebar.config b/apps/emqx_auth_kerberos/rebar.config
-index 8649b8d0..738f68f8 100644
---- a/apps/emqx_auth_kerberos/rebar.config
-+++ b/apps/emqx_auth_kerberos/rebar.config
-@@ -3,5 +3,5 @@
- {deps, [
-     {emqx, {path, "../emqx"}},
-     {emqx_utils, {path, "../emqx_utils"}},
--    {sasl_auth, "2.3.0"}
-+    {sasl_auth, "2.3.2"}
- ]}.
-diff --git a/apps/emqx_bridge_kafka/rebar.config b/apps/emqx_bridge_kafka/rebar.config
-index fd905658..99d576f8 100644
---- a/apps/emqx_bridge_kafka/rebar.config
-+++ b/apps/emqx_bridge_kafka/rebar.config
-@@ -10,7 +10,7 @@
-     {emqx_connector, {path, "../../apps/emqx_connector"}},
-     {emqx_resource, {path, "../../apps/emqx_resource"}},
-     {emqx_bridge, {path, "../../apps/emqx_bridge"}},
--    {sasl_auth, "2.3.0"}
-+    {sasl_auth, "2.3.2"}
- ]}.
- 
- {shell, [
-diff --git a/mix.exs b/mix.exs
-index b9031a70..7c977ab1 100644
---- a/mix.exs
-+++ b/mix.exs
-@@ -215,7 +215,7 @@ defmodule EMQXUmbrella.MixProject do
- 
-   # in conflict by emqx_connector and system_monitor
-   def common_dep(:epgsql), do: {:epgsql, github: "emqx/epgsql", tag: "4.7.1.2", override: true}
--  def common_dep(:sasl_auth), do: {:sasl_auth, "2.3.0", override: true}
-+  def common_dep(:sasl_auth), do: {:sasl_auth, "2.3.2", override: true}
-   def common_dep(:gen_rpc), do: {:gen_rpc, github: "emqx/gen_rpc", tag: "3.4.0", override: true}
- 
-   def common_dep(:system_monitor),
-diff --git a/rebar.config b/rebar.config
-index 551ec665..ccf2d239 100644
---- a/rebar.config
-+++ b/rebar.config
-@@ -100,7 +100,7 @@
-     {snabbkaffe, {git, "https://github.com/kafka4beam/snabbkaffe.git", {tag, "1.0.10"}}},
-     {hocon, {git, "https://github.com/emqx/hocon.git", {tag, "0.43.3"}}},
-     {emqx_http_lib, {git, "https://github.com/emqx/emqx_http_lib.git", {tag, "0.5.3"}}},
--    {sasl_auth, "2.3.0"},
-+    {sasl_auth, "2.3.2"},
-     {jose, {git, "https://github.com/potatosalad/erlang-jose", {tag, "1.11.2"}}},
-     {telemetry, "1.1.0"},
-     {hackney, {git, "https://github.com/emqx/hackney.git", {tag, "1.18.1-1"}}},

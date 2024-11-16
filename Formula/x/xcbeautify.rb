@@ -1,27 +1,33 @@
 class Xcbeautify < Formula
   desc "Little beautifier tool for xcodebuild"
   homepage "https://github.com/cpisciotta/xcbeautify"
-  url "https://github.com/cpisciotta/xcbeautify/archive/refs/tags/2.14.1.tar.gz"
-  sha256 "ecd8843e7beafceafd4c4dd333532dcb835cd7a85de6df2b1bf2015143838cda"
+  url "https://github.com/cpisciotta/xcbeautify/archive/refs/tags/2.15.0.tar.gz"
+  sha256 "952fe800799273778cd4e6a90b9622d968a62aedc2bc2d74fe48cc512e5f25cb"
   license "MIT"
   head "https://github.com/cpisciotta/xcbeautify.git", branch: "main"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "4cc597f63b3d62f178583c92e1b109b2db4c8ac412d664fe81e270f0e60d23d8"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "d5a34e57b86d3772077128238392d0630b927b5f819e67896945ae8341d256e5"
-    sha256 cellar: :any_skip_relocation, arm64_ventura: "6c89c29d2bb110ee9c4f813805d028ee237eff2a6e796b16b3a237d266508e6f"
-    sha256 cellar: :any_skip_relocation, sonoma:        "8f08c5fc5c57ba782edeca3afd40c5d479f43cd434db1e2c87ad38ee4a0062b1"
-    sha256 cellar: :any_skip_relocation, ventura:       "f9e7f55437698cbe39a3a66e9aed794bd8c8f4275c516fe8c644e16822a867ba"
-    sha256                               x86_64_linux:  "d1b78cb2b6799c75faf241bc8606734c534ca86d93d96b5428b77a63f30c4be8"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "5d23e840464bbf6edc84bed41f1fb60bb059210859a5ab853733fee93da829bc"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "dabdaf1bc6342827485281230b6f519b08842aa83908a61987710a29f09d33f3"
+    sha256 cellar: :any_skip_relocation, arm64_ventura: "239a42eac4867f6f18b3071209cfa96932b084aaea2b88b7e309fabf5a355602"
+    sha256 cellar: :any_skip_relocation, sonoma:        "e665c219099d8b08ee099082433886161e39eccf529628bb26a14cc70731dd20"
+    sha256 cellar: :any_skip_relocation, ventura:       "3a85897debcffb6fe14c3773b70d76c901151b674a95a76b38ff918e1cad60d1"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "55be4016fdb96e789ca168e4064f2bc71211a4ddf4590c88b0053d311faec385"
   end
 
   # needs Swift tools version 5.9.0
   depends_on xcode: ["15.0", :build]
 
-  uses_from_macos "swift"
+  uses_from_macos "swift" => :build
+  uses_from_macos "libxml2"
 
   def install
-    system "swift", "build", "--disable-sandbox", "--configuration", "release"
+    args = if OS.mac?
+      ["--disable-sandbox"]
+    else
+      ["--static-swift-stdlib"]
+    end
+    system "swift", "build", *args, "--configuration", "release"
     bin.install ".build/release/xcbeautify"
   end
 

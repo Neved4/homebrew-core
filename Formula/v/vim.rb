@@ -2,8 +2,8 @@ class Vim < Formula
   desc "Vi 'workalike' with many additional features"
   homepage "https://www.vim.org/"
   # vim should only be updated every 50 releases on multiples of 50
-  url "https://github.com/vim/vim/archive/refs/tags/v9.1.0800.tar.gz"
-  sha256 "3bc15301f35addac9acde1da64da0976dbeafe1264e904c25a3cdc831e347303"
+  url "https://github.com/vim/vim/archive/refs/tags/v9.1.0850.tar.gz"
+  sha256 "4bbd7480c2d5c577a77a070fa4a133e057c37f611adf47d9a317e50244d7caa4"
   license "Vim"
   head "https://github.com/vim/vim.git", branch: "master"
 
@@ -25,12 +25,12 @@ class Vim < Formula
   end
 
   bottle do
-    sha256 arm64_sequoia: "9ab4bf1ee348fe082f4bd55418b0004e37e2c4e02b145e1547dd3ec30551fba0"
-    sha256 arm64_sonoma:  "9c3a9718fa9690a749d26b2a5c74362520b26617827d49bec8237b68e55384a2"
-    sha256 arm64_ventura: "ef07a3be799515df373da0d5bde74298cea4c6cdfde77f7f3eda491ec9bcd8bc"
-    sha256 sonoma:        "899adf0532102067c8f50f13a21ee1caf5e137f4cade37579269573f41367fad"
-    sha256 ventura:       "69ae385f5629fb4859d9d99c64f138beca36dba670aabbaf7647a7f89fb49296"
-    sha256 x86_64_linux:  "774c736c4924d8c5c2a5e202518da2120c1368d04c2bb544fb6dabafc521fc73"
+    sha256 arm64_sequoia: "080fc85b0be2c82c2e3afdabb12e6df5384d29aa85530b4f42855a096e8b709c"
+    sha256 arm64_sonoma:  "a321c19bfd32e3a66e5a7676bc059b99f5eee18f25855d820e3ecf0010809ddf"
+    sha256 arm64_ventura: "f4b7e8330328a9bd5daec9d2e8812f0d05aab71d056a151fa7193f5542604646"
+    sha256 sonoma:        "d5ba1f754cfbfbf7a06135be2dfab52b2f46964e937316283ed2c0c150c727ff"
+    sha256 ventura:       "4595ce6c86dd80d7551d166d01e5d86d6e1952af45df3509074528c1c2ae1c6e"
+    sha256 x86_64_linux:  "43671b39421f5cfeb84799b901a5b5d2efa8a330ab96c1911371c94531a22862"
   end
 
   depends_on "gettext"
@@ -60,6 +60,8 @@ class Vim < Formula
 
     # vim doesn't require any Python package, unset PYTHONPATH.
     ENV.delete("PYTHONPATH")
+
+    ENV.append_to_cflags "-mllvm -enable-constraint-elimination=0" if DevelopmentTools.clang_build_version == 1600
 
     # We specify HOMEBREW_PREFIX as the prefix to make vim look in the
     # the right place (HOMEBREW_PREFIX/share/vim/{vimrc,vimfiles}) for

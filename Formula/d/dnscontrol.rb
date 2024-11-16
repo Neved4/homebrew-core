@@ -1,8 +1,8 @@
 class Dnscontrol < Formula
   desc "Synchronize your DNS to multiple providers from a simple DSL"
   homepage "https://dnscontrol.org/"
-  url "https://github.com/StackExchange/dnscontrol/archive/refs/tags/v4.14.0.tar.gz"
-  sha256 "36495855ac23a927e92732a5ab2c982447d5fed8e4f963489c798564a443d6fa"
+  url "https://github.com/StackExchange/dnscontrol/archive/refs/tags/v4.14.3.tar.gz"
+  sha256 "47c06beb07ea7376588a40d23f73d8455a6ac13d5885b092bc29fb04fe3d6709"
   license "MIT"
   version_scheme 1
 
@@ -15,12 +15,12 @@ class Dnscontrol < Formula
   end
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "b8fb7bd73177fde360f4091a3dc8ba8153b9345e04d93dc3b83410f6a2e312cb"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "b8fb7bd73177fde360f4091a3dc8ba8153b9345e04d93dc3b83410f6a2e312cb"
-    sha256 cellar: :any_skip_relocation, arm64_ventura: "b8fb7bd73177fde360f4091a3dc8ba8153b9345e04d93dc3b83410f6a2e312cb"
-    sha256 cellar: :any_skip_relocation, sonoma:        "b6c058c11bdf6da5edfb2f46cf3fa8673be7bbc0dedfb810312da3e33e9364b7"
-    sha256 cellar: :any_skip_relocation, ventura:       "b6c058c11bdf6da5edfb2f46cf3fa8673be7bbc0dedfb810312da3e33e9364b7"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "7c737b26fad739ae78ad19c1799f632ac9303390924425377c1128045e75faf3"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "68a92087051f603c20115ecd9fd972747d4960210d49bb012a9af2976011dd40"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "68a92087051f603c20115ecd9fd972747d4960210d49bb012a9af2976011dd40"
+    sha256 cellar: :any_skip_relocation, arm64_ventura: "68a92087051f603c20115ecd9fd972747d4960210d49bb012a9af2976011dd40"
+    sha256 cellar: :any_skip_relocation, sonoma:        "b4521e9651b532a27d402cf690f3721b0001474a80ca0ba060d0ce619d1e34f2"
+    sha256 cellar: :any_skip_relocation, ventura:       "b4521e9651b532a27d402cf690f3721b0001474a80ca0ba060d0ce619d1e34f2"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "4e00bc4deb96c83dfa54983078295babefb37f4b9622b8bbe3c97c833358bae3"
   end
 
   depends_on "go" => :build

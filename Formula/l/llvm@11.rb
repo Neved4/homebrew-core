@@ -38,7 +38,7 @@ class LlvmAT11 < Formula
   uses_from_macos "zlib"
 
   on_linux do
-    depends_on "pkg-config" => :build
+    depends_on "pkgconf" => :build
     depends_on "binutils" # needed for gold
     depends_on "elfutils" # openmp requires <gelf.h>
     depends_on "glibc" if Formula["glibc"].any_version_installed?
@@ -252,14 +252,14 @@ class LlvmAT11 < Formula
       }
     C
 
-    (testpath/"test.cpp").write <<~EOS
+    (testpath/"test.cpp").write <<~CPP
       #include <iostream>
       int main()
       {
         std::cout << "Hello World!" << std::endl;
         return 0;
       }
-    EOS
+    CPP
 
     # Testing default toolchain and SDK location.
     system bin/"clang++", "-v",
@@ -344,13 +344,13 @@ class LlvmAT11 < Formula
         refute_match(/libunwind/, lib)
       end
 
-      (testpath/"test_plugin.cpp").write <<~EOS
+      (testpath/"test_plugin.cpp").write <<~CPP
         #include <iostream>
         __attribute__((visibility("default")))
         extern "C" void run_plugin() {
           std::cout << "Hello Plugin World!" << std::endl;
         }
-      EOS
+      CPP
       (testpath/"test_plugin_main.c").write <<~C
         extern void run_plugin();
         int main() {
@@ -381,7 +381,7 @@ class LlvmAT11 < Formula
     EOS
     system bin/"mlir-opt", "--verify-diagnostics", "test.mlir"
 
-    (testpath/"scanbuildtest.cpp").write <<~EOS
+    (testpath/"scanbuildtest.cpp").write <<~CPP
       #include <iostream>
       int main() {
         int *i = new int;
@@ -390,7 +390,7 @@ class LlvmAT11 < Formula
         std::cout << *i << std::endl;
         return 0;
       }
-    EOS
+    CPP
     assert_includes shell_output("#{bin}/scan-build #{bin}/clang++ scanbuildtest.cpp 2>&1"),
       "warning: Use of memory after it is freed"
 

@@ -1,8 +1,8 @@
 class Libphonenumber < Formula
   desc "C++ Phone Number library by Google"
   homepage "https://github.com/google/libphonenumber"
-  url "https://github.com/google/libphonenumber/archive/refs/tags/v8.13.48.tar.gz"
-  sha256 "71bd662c7fc9e6e0275412529a28e1da464afab3dbee4387089ad8f88f96ae59"
+  url "https://github.com/google/libphonenumber/archive/refs/tags/v8.13.50.tar.gz"
+  sha256 "a46b2b5195b85197212ca9d9c0d8dc37af57d2f38b38b8c15dd56a0ec3a2cdc0"
   license "Apache-2.0"
 
   livecheck do
@@ -11,19 +11,19 @@ class Libphonenumber < Formula
   end
 
   bottle do
-    sha256 cellar: :any,                 arm64_sequoia: "6091b1275a057e97c0b6dabb267f708b23a982db4e819b313dab2c0124185e24"
-    sha256 cellar: :any,                 arm64_sonoma:  "c44320a397ad8a0ae2883fa9208166af0f3189177bf4a5b4f5facf5fab328398"
-    sha256 cellar: :any,                 arm64_ventura: "734bfe8c44e06b04132019dba5a1ab5691cb99c3ca67a46711c28a1c2d6dad84"
-    sha256 cellar: :any,                 sonoma:        "79f7d7c4e18f859a21f76d516a3a001e0dbd1f1bceccbf10675d76b97dde9df8"
-    sha256 cellar: :any,                 ventura:       "5c5e7861d774938f0524d4dea5169824ed27abaa02b567b9a15092fd813c32f7"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "c70167b35b2341958d234bd248b51157fdff9332994ee9c90b21f663cac11204"
+    sha256 cellar: :any,                 arm64_sequoia: "4d8beabc380c2b656a47375d28c090bef3890ca841a3cc49c7eeba76bcf72e09"
+    sha256 cellar: :any,                 arm64_sonoma:  "ce771636e0e3f83db9ea18386b20bdbdead9bbea118bba20cc2727fb7f516601"
+    sha256 cellar: :any,                 arm64_ventura: "86f6557390ee7f8099834f353fb5b98b57a2f02bd096d1d00eb0d84fa0e01a77"
+    sha256 cellar: :any,                 sonoma:        "e6c8020b56218a0685ab9b3dde8153b985656ad5639c83e1b7cd5ee0603092ca"
+    sha256 cellar: :any,                 ventura:       "f959c41fc5a98a0adae5ab7212f9af1a4797238d734383d857cf74ea2e6c387a"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "372a38d5ddb6a5977b2affc2cf8a2c953256bb23562c58bde8f2779c358c49f9"
   end
 
   depends_on "cmake" => :build
   depends_on "openjdk" => :build
   depends_on "abseil"
   depends_on "boost"
-  depends_on "icu4c@75"
+  depends_on "icu4c@76"
   depends_on "protobuf"
 
   fails_with gcc: "5" # For abseil and C++17
@@ -38,7 +38,7 @@ class Libphonenumber < Formula
   end
 
   test do
-    (testpath/"test.cpp").write <<~EOS
+    (testpath/"test.cpp").write <<~CPP
       #include <phonenumbers/phonenumberutil.h>
       #include <phonenumbers/phonenumber.pb.h>
       #include <iostream>
@@ -59,7 +59,7 @@ class Libphonenumber < Formula
           return 1;
         }
       }
-    EOS
+    CPP
     system ENV.cxx, "-std=c++17", "test.cpp",
                                 "-I#{Formula["protobuf"].opt_include}",
                                 "-L#{lib}", "-lphonenumber", "-o", "test"

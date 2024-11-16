@@ -1,24 +1,23 @@
 class Jackett < Formula
   desc "API Support for your favorite torrent trackers"
   homepage "https://github.com/Jackett/Jackett"
-  url "https://github.com/Jackett/Jackett/archive/refs/tags/v0.22.834.tar.gz"
-  sha256 "0229b2fe6fb1755f4b97eb17b7a8490d812700c3ff14dfc46f2c2979ba561859"
+  url "https://github.com/Jackett/Jackett/archive/refs/tags/v0.22.946.tar.gz"
+  sha256 "d181a575802c49886ddca7ccaf9b2b7a30cbd8b4d240eeab91c6b14293d033c7"
   license "GPL-2.0-only"
   head "https://github.com/Jackett/Jackett.git", branch: "master"
 
   bottle do
-    sha256 cellar: :any,                 arm64_sequoia: "e05850596c176905bae5134e84830354c9c58d5dc7206376af09389ebb687e18"
-    sha256 cellar: :any,                 arm64_sonoma:  "d34f5bc8a79a9ea7e70a45dbdd0c06c22b5a0b1d337ae8417dc1e6b017d4e919"
-    sha256 cellar: :any,                 arm64_ventura: "452dc5f16029afc1a4343c53751e5a47badeec0b9a5b047791609f5e017b16f4"
-    sha256 cellar: :any,                 sonoma:        "84a028f66e6405b5a6c3d2b505b08aeec2fbf995d62820105da81aba0cc4867c"
-    sha256 cellar: :any,                 ventura:       "baaf747cd6f912b5d4fe25613156d56753f6c441c9ff138f1dd7ef70b8127a8b"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "286f3de4b0d8e628271b34da0dfc07923dbf26254afc0b377f0ee3c96828ed7a"
+    sha256 cellar: :any,                 arm64_sequoia: "6b89553763c118e38857a2820daa3ec38560d0325adbcfdc00a68629e1ecaa1f"
+    sha256 cellar: :any,                 arm64_sonoma:  "25b48c0b576c623aa707835c8d7b6bbcf3751639a4dc368248f6d9caa7491dbf"
+    sha256 cellar: :any,                 arm64_ventura: "fdaadf9c05cf54f640fe72bc5ed4be0efa004ec3993564017a8cde0040c6a23d"
+    sha256 cellar: :any,                 ventura:       "25f94d59774606bfc9b32b75bed79570b9c517e5cdeb10c502c3e07735edb7dd"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "33d77fec51e337752d3d37c5a263f27f03a8e309ac38ab11205352fef4fcca1d"
   end
 
-  depends_on "dotnet"
+  depends_on "dotnet@8"
 
   def install
-    dotnet = Formula["dotnet"]
+    dotnet = Formula["dotnet@8"]
     os = OS.mac? ? "osx" : OS.kernel_name.downcase
     arch = Hardware::CPU.intel? ? "x64" : Hardware::CPU.arch.to_s
 

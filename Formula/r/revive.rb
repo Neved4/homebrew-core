@@ -2,18 +2,18 @@ class Revive < Formula
   desc "Fast, configurable, extensible, flexible, and beautiful linter for Go"
   homepage "https://revive.run"
   url "https://github.com/mgechev/revive.git",
-      tag:      "v1.4.0",
-      revision: "a65fb8d1b5f6f64665191600873c9289e89e06a4"
+      tag:      "v1.5.1",
+      revision: "3378f7033b4c26c7fb987a539ddb4bad6e88b5d7"
   license "MIT"
   head "https://github.com/mgechev/revive.git", branch: "master"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "e4bd9db921ad15d76be08135faef2a851af2b178265ccf1d79d91669547d3255"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "e4bd9db921ad15d76be08135faef2a851af2b178265ccf1d79d91669547d3255"
-    sha256 cellar: :any_skip_relocation, arm64_ventura: "e4bd9db921ad15d76be08135faef2a851af2b178265ccf1d79d91669547d3255"
-    sha256 cellar: :any_skip_relocation, sonoma:        "e1827796434ed5ee4f45859eb95fb9fdf23c8914ffb717bfdbb5438e11648f45"
-    sha256 cellar: :any_skip_relocation, ventura:       "e1827796434ed5ee4f45859eb95fb9fdf23c8914ffb717bfdbb5438e11648f45"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "1559b0860ed95ff2a0a3f6d79ada2d915031767ad5e6cd8b8f7bc1e1d539b48c"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "86c92d60fe4dcfd7bf518a0fa433342f29aef6fdd5105203fbc714cbc4ca85e1"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "86c92d60fe4dcfd7bf518a0fa433342f29aef6fdd5105203fbc714cbc4ca85e1"
+    sha256 cellar: :any_skip_relocation, arm64_ventura: "86c92d60fe4dcfd7bf518a0fa433342f29aef6fdd5105203fbc714cbc4ca85e1"
+    sha256 cellar: :any_skip_relocation, sonoma:        "dadea83cdd5c56c13725d30dbdd4e91b8fbb58a6afbd591c0448701d84bfa3fd"
+    sha256 cellar: :any_skip_relocation, ventura:       "dadea83cdd5c56c13725d30dbdd4e91b8fbb58a6afbd591c0448701d84bfa3fd"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "84bb1fbbeeb2e52e195c2a2dbd1c3093524a29df1e57ef0b0d7aecbca94c5b35"
   end
 
   depends_on "go" => [:build, :test]
@@ -29,7 +29,7 @@ class Revive < Formula
   end
 
   test do
-    (testpath/"main.go").write <<~EOS
+    (testpath/"main.go").write <<~GO
       package main
 
       import "fmt"
@@ -38,7 +38,7 @@ class Revive < Formula
         my_string := "Hello from Homebrew"
         fmt.Println(my_string)
       }
-    EOS
+    GO
 
     system "go", "mod", "init", "brewtest"
     output = shell_output("#{bin}/revive main.go")

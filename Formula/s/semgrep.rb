@@ -4,8 +4,8 @@ class Semgrep < Formula
   desc "Easily detect and prevent bugs and anti-patterns in your codebase"
   homepage "https://semgrep.dev"
   url "https://github.com/semgrep/semgrep.git",
-      tag:      "v1.93.0",
-      revision: "09228d4cd954a0f686beac5788dbd48dc0decc26"
+      tag:      "v1.96.0",
+      revision: "e743e2d243c83e6ba20e8f2096569f7383c00239"
   license "LGPL-2.1-only"
   head "https://github.com/semgrep/semgrep.git", branch: "develop"
 
@@ -15,12 +15,12 @@ class Semgrep < Formula
   end
 
   bottle do
-    sha256 cellar: :any,                 arm64_sequoia: "7a193ac223541f93fce2ce57c3b306539683107d87367661f82bdad02aa38546"
-    sha256 cellar: :any,                 arm64_sonoma:  "763d175e424459ee8033a276c88497167252ff679ffaf843a7e89b2f17d57d8f"
-    sha256 cellar: :any,                 arm64_ventura: "f8943eafe7c518a93969d482644da00dff88725fab143d3cb7c82eea4d07a7db"
-    sha256 cellar: :any,                 sonoma:        "6ec91928a8cb6d151516d119d21718aae4d03f6734582eeaf5c507009ad8c409"
-    sha256 cellar: :any,                 ventura:       "aab9c31f94584b0af0bab470350b67f224a8198f896b537eddb24b57b957c9df"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "9c7b4156230181e7a02ac1d6b500dd81d20ad0a6edb04aa4fe49a85ceb49e02c"
+    sha256 cellar: :any,                 arm64_sequoia: "099051725230031f77d3df23ed5030b83f71cc4200f5d19e1af7a57e8dbe1290"
+    sha256 cellar: :any,                 arm64_sonoma:  "f5d2d8eb2b08fa44f2bb3a094712e3a377e9bb4457d831b8a9b19597e874a182"
+    sha256 cellar: :any,                 arm64_ventura: "b7d7eedd3ff7ebac8d945eea3766494f56131ab033bd9ecc41b58f229e30343e"
+    sha256 cellar: :any,                 sonoma:        "325d04ef412408cd0b7762ca6668470d06d9424fdea63e15c59f3e812e5cc541"
+    sha256 cellar: :any,                 ventura:       "e3e4e896f02926b5567f478b6e4c8c93fcb9f140751cc19d3c5b242119bcaeef"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "08c493b02bb58704ceb8fca1bf9bc6e1b73966a09ad52cb0109ea6d2a743d8f3"
   end
 
   depends_on "autoconf" => :build
@@ -97,8 +97,8 @@ class Semgrep < Formula
   end
 
   resource "face" do
-    url "https://files.pythonhosted.org/packages/d7/bc/4d0f6c1e095eb977782edd94245f84b69c6f8df152480c78ab310e895098/face-22.0.0.tar.gz"
-    sha256 "d5d692f90bc8f5987b636e47e36384b9bbda499aaf0a77aa0b0bbe834c76923d"
+    url "https://files.pythonhosted.org/packages/ac/79/2484075a8549cd64beae697a8f664dee69a5ccf3a7439ee40c8f93c1978a/face-24.0.0.tar.gz"
+    sha256 "611e29a01ac5970f0077f9c577e746d48c082588b411b33a0dd55c4d872949f6"
   end
 
   resource "glom" do
@@ -222,8 +222,8 @@ class Semgrep < Formula
   end
 
   resource "rpds-py" do
-    url "https://files.pythonhosted.org/packages/55/64/b693f262791b818880d17268f3f8181ef799b0d187f6f731b1772e05a29a/rpds_py-0.20.0.tar.gz"
-    sha256 "d72a210824facfdaf8768cf2d7ca25a042c30320b3020de2fa04640920d4e121"
+    url "https://files.pythonhosted.org/packages/23/80/afdf96daf9b27d61483ef05b38f282121db0e38f5fd4e89f40f5c86c2a4f/rpds_py-0.21.0.tar.gz"
+    sha256 "ed6378c9d66d0de903763e7706383d60c33829581f0adff47b6535f1802fa6db"
   end
 
   resource "ruamel-yaml" do
@@ -232,8 +232,8 @@ class Semgrep < Formula
   end
 
   resource "setuptools" do
-    url "https://files.pythonhosted.org/packages/07/37/b31be7e4b9f13b59cde9dcaeff112d401d49e0dc5b37ed4a9fc8fb12f409/setuptools-75.2.0.tar.gz"
-    sha256 "753bb6ebf1f465a1912e19ed1d41f403a79173a9acf66a42e7e6aec45c3c16ec"
+    url "https://files.pythonhosted.org/packages/ed/22/a438e0caa4576f8c383fa4d35f1cc01655a46c75be358960d815bfbb12bd/setuptools-75.3.0.tar.gz"
+    sha256 "fba5dd4d766e97be1b1681d98712680ae8f2f26d7881245f2ce9e40714f1a686"
   end
 
   resource "tomli" do
@@ -335,20 +335,22 @@ class Semgrep < Formula
 
     venv.pip_install_and_link buildpath/"cli"
 
-    generate_completions_from_executable(bin/"semgrep", shells: [:fish, :zsh], shell_parameter_format: :click)
+    generate_completions_from_executable(bin/"semgrep", "--legacy",
+                                         shells:                 [:fish, :zsh],
+                                         shell_parameter_format: :click)
   end
 
   test do
     system bin/"semgrep", "--help"
-    (testpath/"script.py").write <<~EOS
+    (testpath/"script.py").write <<~PYTHON
       def silly_eq(a, b):
         return a + b == a + b
-    EOS
+    PYTHON
 
     output = shell_output("#{bin}/semgrep script.py -l python -e '$X == $X'")
     assert_match "a + b == a + b", output
 
-    (testpath/"script.ts").write <<~EOS
+    (testpath/"script.ts").write <<~TYPESCRIPT
       function test_equal() {
         a = 1;
         b = 2;
@@ -357,7 +359,7 @@ class Semgrep < Formula
             return 1;
         return 0;
       }
-    EOS
+    TYPESCRIPT
 
     output = shell_output("#{bin}/semgrep script.ts -l ts -e '$X == $X'")
     assert_match "a + b == a + b", output

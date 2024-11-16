@@ -1,8 +1,8 @@
 class VulkanLoader < Formula
   desc "Vulkan ICD Loader"
   homepage "https://github.com/KhronosGroup/Vulkan-Loader"
-  url "https://github.com/KhronosGroup/Vulkan-Loader/archive/refs/tags/v1.3.299.tar.gz"
-  sha256 "32b268b140fa7a9eea46f25c83e0c86e5e9959dd85adea3807e332d0e19ce0f6"
+  url "https://github.com/KhronosGroup/Vulkan-Loader/archive/refs/tags/v1.3.301.tar.gz"
+  sha256 "7f6895bb25faaca72b9d75325f1d225ae7f30081d3e81c8c19f2c4556b23d676"
   license "Apache-2.0"
   head "https://github.com/KhronosGroup/Vulkan-Loader.git", branch: "main"
 
@@ -12,12 +12,12 @@ class VulkanLoader < Formula
   end
 
   bottle do
-    sha256 arm64_sequoia: "7a088df5b6a5c39fe6ccfe03bdba6b536e6cebed9e2d8ef0928d34a53b171d70"
-    sha256 arm64_sonoma:  "e53bfdee03253da65a69d72336803f7616622f5338470ceea5fe136831e87c06"
-    sha256 arm64_ventura: "73399cf7fe9c10ed48a46742efde7d87e1eb7e099441661090c9b82e377bc590"
-    sha256 sonoma:        "eb13b698732799e7c0b026e45599d5ba89e0547adb38e36ba734e81174aff3ec"
-    sha256 ventura:       "7af898ff68be9909563b88b93887feb7e353e8f4f2c5581c2b30fc26b015e347"
-    sha256 x86_64_linux:  "334ae23d4c51e100c315f1973ef83848deea12a910ab754a8523efc6e9a1e42c"
+    sha256 arm64_sequoia: "574c0970f05a142d12d31248773ff523196a9b88eadcfc64c4f679496fcc3283"
+    sha256 arm64_sonoma:  "5437078201d7c8132c272ffeae98520293c3e8f591c0cc0c228bfc53e4693b27"
+    sha256 arm64_ventura: "82c1d9c15428209675ea59eb91dc027f7a1d47879a293d8434e2f0fce9e722be"
+    sha256 sonoma:        "e22ca56ab3d54db966a5e2648c65a5a2ce741a97613dab8df822ace2e7fe706f"
+    sha256 ventura:       "fc0e509d57ecfe89a3f4196288f9f8478c18a60edec2a99f7d34b83517b2bcd8"
+    sha256 x86_64_linux:  "8f44e893453eec79736ee038ad3e63e21ba4625eeed616c10cd823a2ad229082"
   end
 
   depends_on "cmake" => :build
@@ -45,14 +45,14 @@ class VulkanLoader < Formula
   end
 
   test do
-    (testpath/"test.c").write <<~EOS
+    (testpath/"test.c").write <<~C
       #include <vulkan/vulkan_core.h>
       int main() {
         uint32_t version;
         vkEnumerateInstanceVersion(&version);
         return (version >= VK_API_VERSION_1_1) ? 0 : 1;
       }
-    EOS
+    C
     system ENV.cc, "-o", "test", "test.c", "-I#{Formula["vulkan-headers"].opt_include}",
                    "-L#{lib}", "-lvulkan"
     system "./test"

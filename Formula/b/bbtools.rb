@@ -1,17 +1,17 @@
 class Bbtools < Formula
   desc "Brian Bushnell's tools for manipulating reads"
   homepage "https://jgi.doe.gov/data-and-tools/bbtools/"
-  url "https://downloads.sourceforge.net/bbmap/BBMap_39.10.tar.gz"
-  sha256 "996aff05765ba5e64547f8a34c56da396ce7b18db96ffe7f1076f2d2f49c6148"
+  url "https://downloads.sourceforge.net/bbmap/BBMap_39.12.tar.gz"
+  sha256 "e4aecce581f471f82a4223e3b817250c9b0999afa0d0b62dff0b9527182d2906"
   license "BSD-3-Clause"
 
   bottle do
-    sha256 cellar: :any,                 arm64_sequoia: "5c0fe9a575a8ad6331d5c8f9f2922fcdfc6c89d22a55a718b19efe79750134f8"
-    sha256 cellar: :any,                 arm64_sonoma:  "d86f1268c6cfe4bb3e35227ca9b9aa9be4c40ce642b2ce0730f944f50d6657c3"
-    sha256 cellar: :any,                 arm64_ventura: "017c4c6997e879a54634ecaf61de8c8627f95ceab57675caa52902fb6ed8fe70"
-    sha256 cellar: :any,                 sonoma:        "6220e590f5476aafdee633c8d732e782222816624dc912ed3e2d63e2c6beef5e"
-    sha256 cellar: :any,                 ventura:       "43f9e3fdb1d3af404891e7714c185da35ac0779d926aa17ae4d7819182eef5b1"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "76022af912cc8f03766580166e6af7a95ec90aa1d1375e8ccd579740b70b761c"
+    sha256 cellar: :any,                 arm64_sequoia: "aed7c8fd9154ea11ad9d9ebbeaacbbdfaae2fb90cfbd294c8d63b91319302bf0"
+    sha256 cellar: :any,                 arm64_sonoma:  "951813efb9a8769c6f6a9c98b0e782d09eab2a418cae93a1954a6273b19a1710"
+    sha256 cellar: :any,                 arm64_ventura: "46eb10782b446164b0b429b3b10b68a101590dc601bdf2567f3bd8ea9835fc5a"
+    sha256 cellar: :any,                 sonoma:        "6ee14aef163af45c86cdf65a2073c1d75f6a684fe34d54327af18c0e810f2d37"
+    sha256 cellar: :any,                 ventura:       "7a1d91a143245a355bd5f967bb800526ca3c1b87fc127c1ae2110d4a92ecff9e"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "341a45acf99084485e9a58cc4ff3662deb808978140b0c17d5e081b44401ea99"
   end
 
   depends_on "openjdk"

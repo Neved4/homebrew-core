@@ -1,10 +1,9 @@
 class PostgresqlAT14 < Formula
   desc "Object-relational database system"
   homepage "https://www.postgresql.org/"
-  url "https://ftp.postgresql.org/pub/source/v14.13/postgresql-14.13.tar.bz2"
-  sha256 "59aa3c4b495ab26a9ec69f3ad0a0228c51f0fe6facf3634dfad4d1197d613a56"
+  url "https://ftp.postgresql.org/pub/source/v14.14/postgresql-14.14.tar.bz2"
+  sha256 "84727fbccdbd1efe01d8de64bc1b33095db773ad2457cefcedc2d8258ebc09d6"
   license "PostgreSQL"
-  revision 2
 
   livecheck do
     url "https://ftp.postgresql.org/pub/source/"
@@ -12,19 +11,19 @@ class PostgresqlAT14 < Formula
   end
 
   bottle do
-    sha256 arm64_sequoia: "20023497a1a3425b75e420a5719b5cd76625a9570fd3c1b39884248c8b592933"
-    sha256 arm64_sonoma:  "0f7af18ac036eaec5404871634f26cfdf70ebbf4458a6f2ea64e23f1cbe7c976"
-    sha256 arm64_ventura: "ef30158cb1e46e3d915205aa3a559d73abf13a5f0660e1d240703d4ee29eef9f"
-    sha256 sonoma:        "0a8e79c40b65fec4300d44af4f02ecf3592684d8fcf429f4e8c0367fc10a5416"
-    sha256 ventura:       "124613581918989030d53dcb3dbecc632806cd8a00e3b0f2abaf53c2f7117d94"
-    sha256 x86_64_linux:  "453189582a53660603517b60d97df72de52e24dce4677e5ed84f7db9859b605f"
+    sha256 arm64_sequoia: "12b74c51edfd5b5f2a912563a6d216c2e0145bda27bbffdba185fa709e96e661"
+    sha256 arm64_sonoma:  "23d8a2dcc2fa1829946d3104a972d924f49ed6d15fb3929eaa95b4b289aa4af8"
+    sha256 arm64_ventura: "60d7d44587f8914878f82025e09e2c8c3d65b7a5db52702c6d06bde08f5962e3"
+    sha256 sonoma:        "c07b2dfb52dd7467162734f8f1b659f497a3874ca521c5e83025cf9457981bea"
+    sha256 ventura:       "f26eba2bc496e3f3773c4ad6a6c1c62757fde5ec2d996850066eca9680130f52"
+    sha256 x86_64_linux:  "190513a4004fc9c4150d72ac5d2237a58f58cd24bbe19a4c1c4a4adc843edb1f"
   end
 
   # https://www.postgresql.org/support/versioning/
   deprecate! date: "2026-11-12", because: :unsupported
 
   depends_on "pkg-config" => :build
-  depends_on "icu4c@75"
+  depends_on "icu4c@76"
 
   # GSSAPI provided by Kerberos.framework crashes when forked.
   # See https://github.com/Homebrew/homebrew-core/issues/47494.

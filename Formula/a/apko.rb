@@ -1,8 +1,8 @@
 class Apko < Formula
   desc "Build OCI images from APK packages directly without Dockerfile"
   homepage "https://github.com/chainguard-dev/apko"
-  url "https://github.com/chainguard-dev/apko/archive/refs/tags/v0.19.1.tar.gz"
-  sha256 "cee42a07681c743ef19418e39e785b53a2b15410629441d8bc6bb949e18b012a"
+  url "https://github.com/chainguard-dev/apko/archive/refs/tags/v0.20.0.tar.gz"
+  sha256 "3f39e793b8f4a7d1844b649729ac997fb46df84ba3b9f14374b9e54b977ef27f"
   license "Apache-2.0"
   head "https://github.com/chainguard-dev/apko.git", branch: "main"
 
@@ -15,12 +15,12 @@ class Apko < Formula
   end
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "66929382d06b7c4b2b31b169887772f65aadfc5492b911735bfe61465257877f"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "66929382d06b7c4b2b31b169887772f65aadfc5492b911735bfe61465257877f"
-    sha256 cellar: :any_skip_relocation, arm64_ventura: "66929382d06b7c4b2b31b169887772f65aadfc5492b911735bfe61465257877f"
-    sha256 cellar: :any_skip_relocation, sonoma:        "0204b14b03355bb65c193e217aa26b5673d208bcd721957fe56f942c0086759a"
-    sha256 cellar: :any_skip_relocation, ventura:       "0204b14b03355bb65c193e217aa26b5673d208bcd721957fe56f942c0086759a"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "713f08cd8eb3b2a5fbf55c8132081e77afe0c9b6855f6b665344a25e80e29253"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "7f48dc2c160c621b1a77c44350ba0c07687af4cf3bbb3f83f8de4bafaeb390de"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "7f48dc2c160c621b1a77c44350ba0c07687af4cf3bbb3f83f8de4bafaeb390de"
+    sha256 cellar: :any_skip_relocation, arm64_ventura: "7f48dc2c160c621b1a77c44350ba0c07687af4cf3bbb3f83f8de4bafaeb390de"
+    sha256 cellar: :any_skip_relocation, sonoma:        "33a5d1fa0bde242e18885b9679e9ea1e5f96dd86917690a641fe5ba88ea15233"
+    sha256 cellar: :any_skip_relocation, ventura:       "33a5d1fa0bde242e18885b9679e9ea1e5f96dd86917690a641fe5ba88ea15233"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "6e65f90f18a1d44d0794bf120b72e88a710028d4bb74931cd1f8b0c5001e89f6"
   end
 
   depends_on "go" => :build
@@ -39,7 +39,7 @@ class Apko < Formula
   end
 
   test do
-    (testpath/"test.yml").write <<~EOS
+    (testpath/"test.yml").write <<~YAML
       contents:
         repositories:
           - https://dl-cdn.alpinelinux.org/alpine/edge/main
@@ -53,12 +53,10 @@ class Apko < Formula
       environment:
         PATH: /usr/sbin:/sbin:/usr/bin:/bin
 
-      # no keys found for arch loongarch64 and releases [edge],
-      # so constraint the archs to x86_64 and aarch64
+      # only key found for arch riscv64 [edge],
       archs:
-        - x86_64
-        - aarch64
-    EOS
+        - riscv64
+    YAML
     system bin/"apko", "build", testpath/"test.yml", "apko-alpine:test", "apko-alpine.tar"
     assert_predicate testpath/"apko-alpine.tar", :exist?
 

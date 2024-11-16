@@ -1,18 +1,18 @@
 class Edencommon < Formula
   desc "Shared library for Watchman and Eden projects"
   homepage "https://github.com/facebookexperimental/edencommon"
-  url "https://github.com/facebookexperimental/edencommon/archive/refs/tags/v2024.10.21.00.tar.gz"
-  sha256 "6d0deabbe79dd395c92391fbe52b5942fc2b45be6e765193bf77beb9c3ecc81e"
+  url "https://github.com/facebookexperimental/edencommon/archive/refs/tags/v2024.11.11.00.tar.gz"
+  sha256 "ae68e13f2c0649b52d9fab61be68f5447d82a5a3f44c88204f0023a7d311e6ed"
   license "MIT"
   head "https://github.com/facebookexperimental/edencommon.git", branch: "main"
 
   bottle do
-    sha256 cellar: :any,                 arm64_sequoia: "d7f3515a1bb411ca973c20c11cd04c759ea5b7d1091677aad85652991c5e5709"
-    sha256 cellar: :any,                 arm64_sonoma:  "77c726e1d273426e9954e04d68ea62089c698a8501b8ac8261ec771b450f9448"
-    sha256 cellar: :any,                 arm64_ventura: "011b08faa645624a52eb39f7c7924ff1475e629519edf9cb9fbafd97b8d3b322"
-    sha256 cellar: :any,                 sonoma:        "4a543f2e459afc523bab63864bffd7ecb08b0b2e78bfedda14e4dea1eef60614"
-    sha256 cellar: :any,                 ventura:       "be667306f16301276815fd1e05d977f39c3c7ab109f2e9ded23089220d509939"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "6073a85e0baa4ec404c54701f2cca70c5b0825f0360265c74b288880c2be0983"
+    sha256 cellar: :any,                 arm64_sequoia: "c2db51bdf1569a246f722c00b2f8b0a25a96e7f65c940ec43f0d17c9ffe8f5d4"
+    sha256 cellar: :any,                 arm64_sonoma:  "c6a419fcb426eddf2fe2d3a5fea04d3c3514bfa6f7b57a0729c66c562e8a1052"
+    sha256 cellar: :any,                 arm64_ventura: "583a7be32c264d02d161db882dc354c32049149808a9b3a028d9ed786c58f7cf"
+    sha256 cellar: :any,                 sonoma:        "d5dd761934cce0bb78d2c45167e1e8f7b650913e7099e86be0fc6e4462b23bd3"
+    sha256 cellar: :any,                 ventura:       "c64119a26a8dd4ff705edcee1f03f9d0caa281e88a679abda6d5a7548cffe981"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "cbfc41beb3f14525d98c666c8cdb879a476238666015904ed074c192bae67268"
   end
 
   depends_on "cmake" => :build
@@ -50,7 +50,7 @@ class Edencommon < Formula
   end
 
   test do
-    (testpath/"test.cc").write <<~EOS
+    (testpath/"test.cc").write <<~CPP
       #include <eden/common/utils/ProcessInfo.h>
       #include <cstdlib>
       #include <iostream>
@@ -63,7 +63,7 @@ class Edencommon < Formula
         std::cout << readProcessName(pid) << std::endl;
         return 0;
       }
-    EOS
+    CPP
 
     system ENV.cxx, "-std=c++17", "-I#{include}", "test.cc",
                     "-L#{lib}", "-L#{Formula["folly"].opt_lib}",

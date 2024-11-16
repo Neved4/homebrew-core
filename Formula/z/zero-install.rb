@@ -29,7 +29,7 @@ class ZeroInstall < Formula
   depends_on "ocaml" => :build
   depends_on "ocamlbuild" => :build
   depends_on "opam" => :build
-  depends_on "pkg-config" => :build
+  depends_on "pkgconf" => :build
   depends_on "gnupg"
 
   uses_from_macos "python" => :build
@@ -37,7 +37,7 @@ class ZeroInstall < Formula
   uses_from_macos "curl"
 
   on_linux do
-    depends_on "pkg-config"
+    depends_on "pkgconf"
   end
 
   def install
@@ -74,12 +74,12 @@ class ZeroInstall < Formula
   end
 
   test do
-    (testpath/"hello.sh").write <<~EOS
+    (testpath/"hello.sh").write <<~SH
       #!/bin/sh
       echo "hello world"
-    EOS
+    SH
     chmod 0755, testpath/"hello.sh"
-    (testpath/"hello.xml").write <<~EOS
+    (testpath/"hello.xml").write <<~XML
       <?xml version="1.0" ?>
       <interface xmlns="http://zero-install.sourceforge.net/2004/injector/interface" xmlns:compile="http://zero-install.sourceforge.net/2006/namespaces/0compile">
         <name>hello-bash</name>
@@ -92,7 +92,7 @@ class ZeroInstall < Formula
           </implementation>
         </group>
       </interface>
-    EOS
+    XML
     assert_equal "hello world\n", shell_output("#{bin}/0launch --console hello.xml")
   end
 end

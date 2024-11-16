@@ -11,6 +11,7 @@ class QtAT5 < Formula
   mirror "https://mirrors.ocf.berkeley.edu/qt/archive/qt/5.15/5.15.15/single/qt-everywhere-opensource-src-5.15.15.tar.xz"
   sha256 "b423c30fe3ace7402e5301afbb464febfb3da33d6282a37a665be1e51502335e"
   license all_of: ["GFDL-1.3-only", "GPL-2.0-only", "GPL-3.0-only", "LGPL-2.1-only", "LGPL-3.0-only"]
+  revision 2
 
   livecheck do
     url "https://download.qt.io/official_releases/qt/5.15/"
@@ -18,12 +19,12 @@ class QtAT5 < Formula
   end
 
   bottle do
-    sha256 cellar: :any,                 arm64_sequoia: "d1afd63dc1e62e946c88c80e4192be654df4ac2fc11b82a0f71cd64c0f08fbfa"
-    sha256 cellar: :any,                 arm64_sonoma:  "a0cfeeacfefeb3c3158b03fd3b35e04bdc72d627148bb00c4bc8f196b4d2c360"
-    sha256 cellar: :any,                 arm64_ventura: "0acdf9040c7100ed5750d146191f51d055888f05cb25e57b6cd551d5c11017fc"
-    sha256 cellar: :any,                 sonoma:        "57fb8ee5275428ee49452441bac8e0145c7cb2a6e3247a6f782359b56470df31"
-    sha256 cellar: :any,                 ventura:       "37819927d329989f6b6e6b76e71ecce8f1731488a4b95356d98ff34d6a31fcb3"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "0c8ac60dbe7163744f27d127a8d5e47f6074ab21e6412a156d5a6cf5b71bf7c3"
+    sha256 cellar: :any,                 arm64_sequoia: "e5c91906dc55e3db8d08b6c6fb2b88d20002dbd354b38217a4895f5778ff30ff"
+    sha256 cellar: :any,                 arm64_sonoma:  "edc57e4e22e53d76b10cecd2c1e9d7ad4569078a9efd51e9710d4b758174b7d9"
+    sha256 cellar: :any,                 arm64_ventura: "d1c567b934d8d26d5adbc7582014e93dcdd6c613260d1b9657000558775f0974"
+    sha256 cellar: :any,                 sonoma:        "f1027df9b92489c085d94b94c9853e67f6061133a219444815ccd5c96989f309"
+    sha256 cellar: :any,                 ventura:       "90894c59d79b044ac5f1cbb0e3a7d769d6ced812c5d5253ae574f37a04a20710"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "ad78e47f11ab2fc4a232fe01664e65ee49cda567cd4abc7878537119d8fac2b0"
   end
 
   keg_only :versioned_formula
@@ -62,7 +63,7 @@ class QtAT5 < Formula
     depends_on "expat"
     depends_on "fontconfig"
     depends_on "harfbuzz"
-    depends_on "icu4c@75"
+    depends_on "icu4c@76"
     depends_on "libdrm"
     depends_on "libevent"
     depends_on "libice"
@@ -370,7 +371,7 @@ class QtAT5 < Formula
       SOURCES  += main.cpp
     EOS
 
-    (testpath/"main.cpp").write <<~EOS
+    (testpath/"main.cpp").write <<~CPP
       #include <QCoreApplication>
       #include <QDebug>
 
@@ -380,7 +381,7 @@ class QtAT5 < Formula
         qDebug() << "Hello World!";
         return 0;
       }
-    EOS
+    CPP
 
     # Work around "error: no member named 'signbit' in the global namespace"
     ENV.delete "CPATH"

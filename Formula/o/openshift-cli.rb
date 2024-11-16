@@ -1,9 +1,9 @@
 class OpenshiftCli < Formula
   desc "OpenShift command-line interface tools"
   homepage "https://www.openshift.com/"
-  url "https://mirror.openshift.com/pub/openshift-v4/clients/ocp/4.17.1/openshift-client-src.tar.gz"
+  url "https://mirror.openshift.com/pub/openshift-v4/clients/ocp/4.17.3/openshift-client-src.tar.gz"
   # This project employs synchronized versioning so the sha256 may not change on version bumps
-  sha256 "1c6e69fc3d059f34d33db458d3918e91e895e8c4ae3145bbf2d655cb8ec688da"
+  sha256 "87ac88470f92bc01d4a225b7d5bea8d96920806bdc9fba2b2c3fcfaa31a78e5b"
   license "Apache-2.0"
   head "https://github.com/openshift/oc.git", shallow: false, branch: "master"
 
@@ -13,12 +13,12 @@ class OpenshiftCli < Formula
   end
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "19a386fe4462270b097dea83cb7f32a01e55793ef59637bde6cf353def39ba15"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "c76dc1280b750630bb488c4092fc71f10112d170d1adfa6c4c02c1ba8d7dd447"
-    sha256 cellar: :any_skip_relocation, arm64_ventura: "ccc4ccab4785fc51cd6209a99ceea3d04a0175d8bcb75e278456de5b7eefd4a0"
-    sha256 cellar: :any_skip_relocation, sonoma:        "595bf986031f4f71a409dac7cb35713c6441d01e3f709e202fc1e02c3504fa3d"
-    sha256 cellar: :any_skip_relocation, ventura:       "339161b2eeed8ae262196f95ab1caabc67af420f83c445e41e6fd51e1ba0456c"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "f3c5a4d84630d1f4c45db5c3ab3678297286619492e2e58ac683781c461f8700"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "b8ff7a481526f7b4900218ccec55b75ac0aba4d5f000713748fd63b84fc0d614"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "ad16f029e62cde6eb245e31d312b3d2e7b3b07f20d79d0bd09cb5abc1c700c51"
+    sha256 cellar: :any_skip_relocation, arm64_ventura: "4136246ccb03a922f81b5e43cc6e25c71568fd8f5485c7ec8f16da7e48142364"
+    sha256 cellar: :any_skip_relocation, sonoma:        "5b891929a6a29f5004864272257bad9cba4f4d7e5f4bb37ff9156d8ffcd48eca"
+    sha256 cellar: :any_skip_relocation, ventura:       "001171be0d714036930bc76066333abefaa8ca6479adfa6c3a6a970246c58e95"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "a2d7e08d3edd53cd55a3ff75f455052902b48f1d530a9d0834fc2ec8220421c4"
   end
 
   depends_on "go" => :build

@@ -1,8 +1,8 @@
 class Xbyak < Formula
   desc "C++ JIT assembler for x86 (IA32), x64 (AMD64, x86-64)"
   homepage "https://github.com/herumi/xbyak"
-  url "https://github.com/herumi/xbyak/archive/refs/tags/v7.20.tar.gz"
-  sha256 "82824b436751d570f404f9d4598216dfd29596ac149bba8b6b5b4fc555061a12"
+  url "https://github.com/herumi/xbyak/archive/refs/tags/v7.22.tar.gz"
+  sha256 "b227960bce3642b786a4aba33ce93d97abf5a40006190fed2f1eff15889fe456"
   license "BSD-3-Clause"
   head "https://github.com/herumi/xbyak.git", branch: "master"
 
@@ -12,7 +12,7 @@ class Xbyak < Formula
   end
 
   bottle do
-    sha256 cellar: :any_skip_relocation, all: "736c1d21ffcdbfce76140064d1e99b75f7ab53d55ddefcf79828ce4fb9ff36c8"
+    sha256 cellar: :any_skip_relocation, all: "3c6a79c95901cd9bd1e8159627dd54017542f2b003a5aac86ebd5295e98f86bd"
   end
 
   depends_on "cmake" => :build
@@ -24,7 +24,7 @@ class Xbyak < Formula
   end
 
   test do
-    (testpath/"test.cpp").write <<~EOS
+    (testpath/"test.cpp").write <<~CPP
       #include <xbyak/xbyak_util.h>
 
       int main() {
@@ -32,7 +32,7 @@ class Xbyak < Formula
         cpu.has(Xbyak::util::Cpu::tSSE42);
         return 0;
       }
-    EOS
+    CPP
     system ENV.cxx, "test.cpp", "-c", "-I#{include}"
   end
 end

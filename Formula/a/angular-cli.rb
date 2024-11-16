@@ -1,17 +1,17 @@
 class AngularCli < Formula
   desc "CLI tool for Angular"
   homepage "https://angular.dev/cli"
-  url "https://registry.npmjs.org/@angular/cli/-/cli-18.2.10.tgz"
-  sha256 "d48b8c6a2bbf731d7b97eb9539ef8defe993e141ec7c3ba15b8d404aac936820"
+  url "https://registry.npmjs.org/@angular/cli/-/cli-18.2.12.tgz"
+  sha256 "df3c30ebb22c9d2cab1d496bc72ed4fd4fa24ddd0cf1c4e7e96d8f02c83035be"
   license "MIT"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "81e87dcf939435860747fd9e6209bb3324441a0e3be8fa8696cfed3caaff0f05"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "81e87dcf939435860747fd9e6209bb3324441a0e3be8fa8696cfed3caaff0f05"
-    sha256 cellar: :any_skip_relocation, arm64_ventura: "81e87dcf939435860747fd9e6209bb3324441a0e3be8fa8696cfed3caaff0f05"
-    sha256 cellar: :any_skip_relocation, sonoma:        "4ac1b7066a517536e0d4e837b6987e085657792bf67278ca3e44addf8a35d840"
-    sha256 cellar: :any_skip_relocation, ventura:       "4ac1b7066a517536e0d4e837b6987e085657792bf67278ca3e44addf8a35d840"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "81e87dcf939435860747fd9e6209bb3324441a0e3be8fa8696cfed3caaff0f05"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "8878bda2d8727579bfabc61b7ffe4d47e320fa540efc4d8b61e557f6bfb6460c"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "8878bda2d8727579bfabc61b7ffe4d47e320fa540efc4d8b61e557f6bfb6460c"
+    sha256 cellar: :any_skip_relocation, arm64_ventura: "8878bda2d8727579bfabc61b7ffe4d47e320fa540efc4d8b61e557f6bfb6460c"
+    sha256 cellar: :any_skip_relocation, sonoma:        "5952cf0b6671f0869be6c5d69c9b6f75a77c9dff71ea1acf711a02c0f06a24e9"
+    sha256 cellar: :any_skip_relocation, ventura:       "5952cf0b6671f0869be6c5d69c9b6f75a77c9dff71ea1acf711a02c0f06a24e9"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "8878bda2d8727579bfabc61b7ffe4d47e320fa540efc4d8b61e557f6bfb6460c"
   end
 
   depends_on "node"

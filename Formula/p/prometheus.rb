@@ -1,8 +1,8 @@
 class Prometheus < Formula
   desc "Service monitoring system and time series database"
   homepage "https://prometheus.io/"
-  url "https://github.com/prometheus/prometheus/archive/refs/tags/v2.55.0.tar.gz"
-  sha256 "ab1b5902627f20643e158f7f51764baf2ae550ae9e2106dff1cd17ebc59ebc91"
+  url "https://github.com/prometheus/prometheus/archive/refs/tags/v3.0.0.tar.gz"
+  sha256 "7279a012eb12fc91a6887dd6cf09c3e4b68985b8726a78567493bb84902e8bc8"
   license "Apache-2.0"
 
   # There can be a notable gap between when a version is tagged and a
@@ -14,30 +14,29 @@ class Prometheus < Formula
   end
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "7d646f3e72e8537863d848b68d6ea5abd524ca4f7ffdfa3e983e51b76f34e4f7"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "d1adab1b4c04502c67e1c6765478430018586a66268a74b7e96bd42130c96ab2"
-    sha256 cellar: :any_skip_relocation, arm64_ventura: "ae95044332a2046c7ebd8cb711cc0d6197c519e036a21c0ef6692b4abbc0b139"
-    sha256 cellar: :any_skip_relocation, sonoma:        "7a9ded6be42a91ac3aaa7bbcb03b03600ebae05da85355248cc06ee6451098b9"
-    sha256 cellar: :any_skip_relocation, ventura:       "8c71a11b01d15eb2cf81b6ecd6d8cd6968c10d2dc34abff7ccb13d728b27a17c"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "e7fe2f9bd8bfcc0a5f38986685c30ac580e0988a1613f45d5c1ad6e045f7149c"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "c8c921e53a41be58369824649a739fca3b9e1f6a72bf20c03e5009c7e1522954"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "c20bc8e7d44be6dd7c67d77f80cb447d5d055025d29919a61bb3ac68d644c258"
+    sha256 cellar: :any_skip_relocation, arm64_ventura: "5db70367602e1a16ac9aa440b17e9fb315e2e419e4e9fcc9bbc41645ee00e37f"
+    sha256 cellar: :any_skip_relocation, sonoma:        "55d83a8b363aafe74ac6a9596420653a24e31a9961a8f695291645db767f8cc8"
+    sha256 cellar: :any_skip_relocation, ventura:       "25311bc2b774cd69a120536dee71ca41d2643971a435c6f6f8f7a8d3e0efdf99"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "dc63f4348bd32bbbf18938dbc8c44ccd1cb579cfb352f6e3557299ebca3e0e6c"
   end
 
   depends_on "gnu-tar" => :build
   depends_on "go" => :build
-  depends_on "node" => :build
+  depends_on "node@22" => :build # pin to use node22, due to node23 issue, see https://github.com/nodejs/node/issues/55826
   depends_on "yarn" => :build
 
   def install
     ENV.deparallelize
     ENV.prepend_path "PATH", Formula["gnu-tar"].opt_libexec/"gnubin"
-    ENV.prepend_path "PATH", Formula["node"].opt_libexec/"bin"
+    ENV.prepend_path "PATH", Formula["node@22"].opt_libexec/"bin"
     mkdir_p buildpath/"src/github.com/prometheus"
     ln_sf buildpath, buildpath/"src/github.com/prometheus/prometheus"
 
     system "make", "assets"
     system "make", "build"
     bin.install %w[promtool prometheus]
-    libexec.install %w[consoles console_libraries]
 
     (bin/"prometheus_brew_services").write <<~EOS
       #!/bin/bash
@@ -50,7 +49,7 @@ class Prometheus < Formula
       --storage.tsdb.path #{var}/prometheus
     EOS
 
-    (buildpath/"prometheus.yml").write <<~EOS
+    (buildpath/"prometheus.yml").write <<~YAML
       global:
         scrape_interval: 15s
 
@@ -58,7 +57,7 @@ class Prometheus < Formula
         - job_name: "prometheus"
           static_configs:
           - targets: ["localhost:9090"]
-    EOS
+    YAML
     etc.install "prometheus.args", "prometheus.yml"
   end
 
@@ -78,13 +77,13 @@ class Prometheus < Formula
   end
 
   test do
-    (testpath/"rules.example").write <<~EOS
+    (testpath/"rules.example").write <<~YAML
       groups:
       - name: http
         rules:
         - record: job:http_inprogress_requests:sum
           expr: sum(http_inprogress_requests) by (job)
-    EOS
+    YAML
 
     system bin/"promtool", "check", "rules", testpath/"rules.example"
   end

@@ -16,7 +16,6 @@ class Pillow < Formula
   end
 
   depends_on "pkg-config" => :build
-  depends_on "python@3.11" => [:build, :test]
   depends_on "python@3.12" => [:build, :test]
   depends_on "python@3.13" => [:build, :test]
   depends_on "freetype"
@@ -27,7 +26,6 @@ class Pillow < Formula
   depends_on "libxcb"
   depends_on "little-cms2"
   depends_on "openjpeg"
-  depends_on "tcl-tk"
   depends_on "webp"
 
   uses_from_macos "zlib"
@@ -60,11 +58,11 @@ class Pillow < Formula
   end
 
   test do
-    (testpath/"test.py").write <<~EOS
+    (testpath/"test.py").write <<~PYTHON
       from PIL import Image
       im = Image.open("#{test_fixtures("test.jpg")}")
       print(im.format, im.size, im.mode)
-    EOS
+    PYTHON
 
     pythons.each do |python|
       assert_equal "JPEG (1, 1) RGB", shell_output("#{python} test.py").chomp

@@ -1,17 +1,24 @@
 class Sf < Formula
   desc "Command-line toolkit for Salesforce development"
   homepage "https://developer.salesforce.com/tools/salesforcecli"
-  url "https://registry.npmjs.org/@salesforce/cli/-/cli-2.63.7.tgz"
-  sha256 "0258e405bc1f2f70cc23a668161bcefba519d5d726613cfc5d8cfa465af7a660"
+  url "https://registry.npmjs.org/@salesforce/cli/-/cli-2.66.7.tgz"
+  sha256 "f80563112e592e3b122767e6d8117339bdf564bccc64212db62835d48a6285ef"
   license "BSD-3-Clause"
 
+  livecheck do
+    url "https://registry.npmjs.org/@salesforce/cli/latest"
+    strategy :json do |json|
+      json["version"]
+    end
+  end
+
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "e60f79f0c427185c32966d48b15eab67988408bdc3d775652cff3ee61a18e215"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "e60f79f0c427185c32966d48b15eab67988408bdc3d775652cff3ee61a18e215"
-    sha256 cellar: :any_skip_relocation, arm64_ventura: "e60f79f0c427185c32966d48b15eab67988408bdc3d775652cff3ee61a18e215"
-    sha256 cellar: :any_skip_relocation, sonoma:        "f146e16cf46b17f06e276c9e2ac64c0355e0f0b1b24f08682af438c3bb7aad50"
-    sha256 cellar: :any_skip_relocation, ventura:       "f146e16cf46b17f06e276c9e2ac64c0355e0f0b1b24f08682af438c3bb7aad50"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "e60f79f0c427185c32966d48b15eab67988408bdc3d775652cff3ee61a18e215"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "9bfc35cef9f5ad44f1f072cab0b35b1c6723c7a8bb46f3aa43b8071f7a347895"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "9bfc35cef9f5ad44f1f072cab0b35b1c6723c7a8bb46f3aa43b8071f7a347895"
+    sha256 cellar: :any_skip_relocation, arm64_ventura: "9bfc35cef9f5ad44f1f072cab0b35b1c6723c7a8bb46f3aa43b8071f7a347895"
+    sha256 cellar: :any_skip_relocation, sonoma:        "a48650d1cf01b58b05b5766e7f8512359f047a9f7f91b2d1a2232f210d36417b"
+    sha256 cellar: :any_skip_relocation, ventura:       "a48650d1cf01b58b05b5766e7f8512359f047a9f7f91b2d1a2232f210d36417b"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "9bfc35cef9f5ad44f1f072cab0b35b1c6723c7a8bb46f3aa43b8071f7a347895"
   end
 
   depends_on "node@20"

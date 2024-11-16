@@ -3,18 +3,18 @@ class Commitizen < Formula
 
   desc "Defines a standard way of committing rules and communicating it"
   homepage "https://commitizen-tools.github.io/commitizen/"
-  url "https://files.pythonhosted.org/packages/09/55/37aef90fda551fb38edadd80b7c4d498ba552d4c1661b197752c474ce540/commitizen-3.30.0.tar.gz"
-  sha256 "ae67a47c1a700b4f35ac12de0c35c7ba96f152b9377d22b6226bb87372c527b0"
+  url "https://files.pythonhosted.org/packages/bb/ab/71d7338d26c096042269119d93551812897a10378f91af586da2c6aab259/commitizen-3.31.0.tar.gz"
+  sha256 "6ab973e91d07c1e745c6c0efe6dd0708b1f6d8fd7e4ab5e7c773b5ceb3df4ff0"
   license "MIT"
   head "https://github.com/commitizen-tools/commitizen.git", branch: "master"
 
   bottle do
-    sha256 cellar: :any,                 arm64_sequoia: "b752a70252925cfd4834ec4b0181830fad4ded93ce22174a9592dfa78a0ad518"
-    sha256 cellar: :any,                 arm64_sonoma:  "41715cbaeada998fe83abf31ff7d484f63bc83b216ec02233dc2c5e4fd42f7d7"
-    sha256 cellar: :any,                 arm64_ventura: "18a00b48fb135fa66eeb63c219d3442473bd9fcd59ae1ba19d7b9df93c3a896c"
-    sha256 cellar: :any,                 sonoma:        "e31f0d16d1398e4f300fcb666082aeaaa700c11a5f5a14def8d2c763b519b2b6"
-    sha256 cellar: :any,                 ventura:       "7927a6a24a792cff4e8aeb0f7c479521fd07f952cf8c942f0628036cceb4ade0"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "916551f4dfe03a51b94ad34653e52d16203ed2b942db256a19b9c357be44a0bd"
+    sha256 cellar: :any,                 arm64_sequoia: "71c7bed64cd00645cfa4c6e5f62d693080962da802e49aaf4160fe8fc9fd06af"
+    sha256 cellar: :any,                 arm64_sonoma:  "1d5761f4aef68aeeaaa20d5b57f5e4d0d5843c7cf07a1ce1dc676a1d02628a61"
+    sha256 cellar: :any,                 arm64_ventura: "004071907b3d170df5612821d35ca4d71da165fca5d44eda738a183bae0096dd"
+    sha256 cellar: :any,                 sonoma:        "87645c1f36e37aac262447c48c959dd76b1a51db72df7c6b3e26fd355389e67f"
+    sha256 cellar: :any,                 ventura:       "fc94ae2034d9bd68ae5b6aa6651c0b625d1f830a7e3b176c7c6199b2c9c45475"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "85a240ee554e830747902872de71c4e4462a7a199dbe7f042439ef50c0f470ab"
   end
 
   depends_on "libyaml"
@@ -51,8 +51,8 @@ class Commitizen < Formula
   end
 
   resource "packaging" do
-    url "https://files.pythonhosted.org/packages/51/65/50db4dda066951078f0a96cf12f4b9ada6e4b811516bf0262c0f4f7064d4/packaging-24.1.tar.gz"
-    sha256 "026ed72c8ed3fcce5bf8950572258698927fd1dbda10a5e981cdf0ac37f4f002"
+    url "https://files.pythonhosted.org/packages/d0/63/68dbb6eb2de9cb10ee4c9c14a0148804425e13c4fb20d61cce69f53106da/packaging-24.2.tar.gz"
+    sha256 "c228a6dc5e932d346bc5739379109d49e8853dd8223571c7c5b55260edc0b97f"
   end
 
   resource "prompt-toolkit" do

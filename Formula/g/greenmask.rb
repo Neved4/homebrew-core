@@ -1,8 +1,8 @@
 class Greenmask < Formula
   desc "PostgreSQL dump and obfuscation tool"
   homepage "https://greenmask.io"
-  url "https://github.com/GreenmaskIO/greenmask/archive/refs/tags/v0.2.0.tar.gz"
-  sha256 "d16610cd2ee2f6174ccbb6158b49b5857af24680170fe72c912327d1ee87c333"
+  url "https://github.com/GreenmaskIO/greenmask/archive/refs/tags/v0.2.3.tar.gz"
+  sha256 "2647fb9f5b6bd7c17074a597aee40c04b6636dd92e4367d1bdcebd2453a34717"
   license "Apache-2.0"
   head "https://github.com/GreenmaskIO/greenmask.git", branch: "main"
 
@@ -12,12 +12,12 @@ class Greenmask < Formula
   end
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "77747ab95dedda135b9cc87d91b863836a580be3848b770c03a9571ff53a1a3b"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "77747ab95dedda135b9cc87d91b863836a580be3848b770c03a9571ff53a1a3b"
-    sha256 cellar: :any_skip_relocation, arm64_ventura: "77747ab95dedda135b9cc87d91b863836a580be3848b770c03a9571ff53a1a3b"
-    sha256 cellar: :any_skip_relocation, sonoma:        "6b73cb7980abab946ead28712e22fa0abeb0202302c49c648003d05250cd4cac"
-    sha256 cellar: :any_skip_relocation, ventura:       "6b73cb7980abab946ead28712e22fa0abeb0202302c49c648003d05250cd4cac"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "4708d40444135cb960d9c83cd95d48681d9cd660574b1842d7b59c1459c048de"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "fb5cae29c24c7a24edb2852e526dfa1e8b640e5090898cb483c2bcc30a9cc59e"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "fb5cae29c24c7a24edb2852e526dfa1e8b640e5090898cb483c2bcc30a9cc59e"
+    sha256 cellar: :any_skip_relocation, arm64_ventura: "fb5cae29c24c7a24edb2852e526dfa1e8b640e5090898cb483c2bcc30a9cc59e"
+    sha256 cellar: :any_skip_relocation, sonoma:        "425c1bd3b451745680ef5e11cf5e1671ea54322f47a429ae060426c9fa71c136"
+    sha256 cellar: :any_skip_relocation, ventura:       "425c1bd3b451745680ef5e11cf5e1671ea54322f47a429ae060426c9fa71c136"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "b8d41f1865af82ea37a2896cbe36abb56159c81dee87d357f01e2ded0eff0d3e"
   end
 
   depends_on "go" => :build
@@ -35,7 +35,7 @@ class Greenmask < Formula
   test do
     assert_match version.to_s, shell_output("#{bin}/greenmask -v")
 
-    (testpath/"config.yml").write <<~EOS
+    (testpath/"config.yml").write <<~YAML
       common:
         pg_bin_path: "/usr/lib/postgresql/16/bin"
         tmp_dir: "/tmp"
@@ -70,7 +70,7 @@ class Greenmask < Formula
         pg_restore_options: # pg_restore option (you can use the same options as pg_restore has)
           jobs: 10
           dbname: "host=playground-db user=postgres password=example dbname=transformed"
-    EOS
+    YAML
 
     output = shell_output("#{bin}/greenmask --config config.yml list-transformers")
     assert_match "Generate UUID", output

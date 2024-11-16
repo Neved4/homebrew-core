@@ -1,8 +1,8 @@
 class Pnpm < Formula
   desc "Fast, disk space efficient package manager"
   homepage "https://pnpm.io/"
-  url "https://registry.npmjs.org/pnpm/-/pnpm-9.12.2.tgz"
-  sha256 "2ef6e547b0b07d841d605240dce4d635677831148cd30f6d564b8f4f928f73d2"
+  url "https://registry.npmjs.org/pnpm/-/pnpm-9.13.2.tgz"
+  sha256 "ccce81bf7498c5f0f80e31749c1f8f03baba99d168f64590fc7e13fad3ea1938"
   license "MIT"
 
   livecheck do
@@ -11,17 +11,15 @@ class Pnpm < Formula
   end
 
   bottle do
-    sha256 cellar: :any,                 arm64_sequoia: "b39ffc9e6392bd54631c39965517fca93caf2669d56aeffc05bd335eb2f7fd05"
-    sha256 cellar: :any,                 arm64_sonoma:  "b39ffc9e6392bd54631c39965517fca93caf2669d56aeffc05bd335eb2f7fd05"
-    sha256 cellar: :any,                 arm64_ventura: "b39ffc9e6392bd54631c39965517fca93caf2669d56aeffc05bd335eb2f7fd05"
-    sha256 cellar: :any,                 sonoma:        "c07dbedff49890b4de5c79002825ea04ba6988a776c6213e15303fea13def624"
-    sha256 cellar: :any,                 ventura:       "c07dbedff49890b4de5c79002825ea04ba6988a776c6213e15303fea13def624"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "655c30d4c3ccb38e2214755a7a930f81318aad74efd56592cdcd1fa552009ac8"
+    sha256 cellar: :any,                 arm64_sequoia: "b018529e6baf800a0121bd6753e8aea0caff913d1a0feb4554afe26810736d97"
+    sha256 cellar: :any,                 arm64_sonoma:  "b018529e6baf800a0121bd6753e8aea0caff913d1a0feb4554afe26810736d97"
+    sha256 cellar: :any,                 arm64_ventura: "b018529e6baf800a0121bd6753e8aea0caff913d1a0feb4554afe26810736d97"
+    sha256 cellar: :any,                 sonoma:        "e80188faad3a240180545cd10d43ccc2848cc64d43e2c20d08ddda8239d8a4d7"
+    sha256 cellar: :any,                 ventura:       "e80188faad3a240180545cd10d43ccc2848cc64d43e2c20d08ddda8239d8a4d7"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "f53149058c40bdcc06f4a0058add10a72b4f4f7875fa868e21fb2f75bcf208ec"
   end
 
   depends_on "node" => [:build, :test]
-
-  conflicts_with "corepack", because: "both installs `pnpm` and `pnpx` binaries"
 
   def install
     system "npm", "install", *std_npm_args

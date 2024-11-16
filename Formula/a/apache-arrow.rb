@@ -1,29 +1,19 @@
 class ApacheArrow < Formula
   desc "Columnar in-memory analytics layer designed to accelerate big data"
   homepage "https://arrow.apache.org/"
+  url "https://www.apache.org/dyn/closer.lua?path=arrow/arrow-18.0.0/apache-arrow-18.0.0.tar.gz"
+  mirror "https://archive.apache.org/dist/arrow/arrow-18.0.0/apache-arrow-18.0.0.tar.gz"
+  sha256 "abcf1934cd0cdddd33664e9f2d9a251d6c55239d1122ad0ed223b13a583c82a9"
   license "Apache-2.0"
-  revision 9
   head "https://github.com/apache/arrow.git", branch: "main"
 
-  stable do
-    url "https://www.apache.org/dyn/closer.lua?path=arrow/arrow-17.0.0/apache-arrow-17.0.0.tar.gz"
-    mirror "https://archive.apache.org/dist/arrow/arrow-17.0.0/apache-arrow-17.0.0.tar.gz"
-    sha256 "9d280d8042e7cf526f8c28d170d93bfab65e50f94569f6a790982a878d8d898d"
-
-    # Backport support for LLVM 19
-    patch do
-      url "https://github.com/apache/arrow/commit/3505457946192ef2ee0beac3356d9c0ed0d22b0f.patch?full_index=1"
-      sha256 "60793569736ebc72ecddcd06443cf281342d7fa81b5d4727152247f2cb7ad58a"
-    end
-  end
-
   bottle do
-    sha256 cellar: :any,                 arm64_sequoia: "f411c20ea4914620fd382f3a20758201f814da354e278f32d85f58487bb8b87e"
-    sha256 cellar: :any,                 arm64_sonoma:  "edf15aeb53a7086430f00b887733e15c9c36944054c635ff1f7db35af3a4051b"
-    sha256 cellar: :any,                 arm64_ventura: "aa1b6d8b51c21d5f85e20e08ddc0969b7c1f50a0ec7db108ff122ad94bd89361"
-    sha256 cellar: :any,                 sonoma:        "91ecb17642422cf3457e27b124ede15788e83bcbbda0634fd85fad7fdf5fe71e"
-    sha256 cellar: :any,                 ventura:       "65c738d4286249ede5a7d0bc69d31186f4e9f12d03aa66770f80b1d915687843"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "60103c33895e2ff5dc98233b4e203894983e199252afb7482f6c162059d02c44"
+    sha256 cellar: :any,                 arm64_sequoia: "a82ce25f5618bbdba2ee11331e549bd8214c2add540149a0b8fb1d804297b307"
+    sha256 cellar: :any,                 arm64_sonoma:  "1ef3a0812cabb2207641e9a6f265951cbbb365a6a2a90c31d26553f0448c66e1"
+    sha256 cellar: :any,                 arm64_ventura: "fa4a97fbfe5480374e60dff3183033af43970dfe07cebbc95267f455d447d8f2"
+    sha256 cellar: :any,                 sonoma:        "85345c652d786253c58940d1c19e59af24a1830b18d99dc6740eb7f3f54fd4ad"
+    sha256 cellar: :any,                 ventura:       "cbe9df1c7793b1610bbc4c73556d20711782d798e1a04ebe6eab31b6215745fa"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "b1b78619b359374ed148d2994c39b833e6d202241cf6fed4073decbbfb100f71"
   end
 
   depends_on "boost" => :build
@@ -94,13 +84,13 @@ class ApacheArrow < Formula
   end
 
   test do
-    (testpath/"test.cpp").write <<~EOS
+    (testpath/"test.cpp").write <<~CPP
       #include "arrow/api.h"
       int main(void) {
         arrow::int64();
         return 0;
       }
-    EOS
+    CPP
     system ENV.cxx, "test.cpp", "-std=c++17", "-I#{include}", "-L#{lib}", "-larrow", "-o", "test"
     system "./test"
   end

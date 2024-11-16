@@ -5,14 +5,15 @@ class Couchdb < Formula
   mirror "https://archive.apache.org/dist/couchdb/source/3.4.2/apache-couchdb-3.4.2.tar.gz"
   sha256 "d27ff2a13356000296a98ab884caf3d175927cf21727963ff90fab3a747544cf"
   license "Apache-2.0"
+  revision 2
 
   bottle do
-    sha256 cellar: :any,                 arm64_sequoia: "a44013c2e27ebd990529024fa539da1c241d1b564708f540411907242fc5d04e"
-    sha256 cellar: :any,                 arm64_sonoma:  "3c71a671a3a1a93c061cb3dff96b55e7fb5f4a5f717f7eeb58a35ca69a3b88ba"
-    sha256 cellar: :any,                 arm64_ventura: "bb06b7e504e850bb18aa0bfbe7676811b0b081363356f2c36629fe5e072cbc65"
-    sha256 cellar: :any,                 sonoma:        "ea1169647969d3ccc96527f2a4d0970c5f43c66717851ec15cf44883d13bc40c"
-    sha256 cellar: :any,                 ventura:       "870870e63980b33d41cb6e10fb26402192a7b08d440e08850eccdb7ef270f715"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "d3f8e5d5559495f2050887c017496bca4b0b28ee6da6db5ff35547aff7b506b4"
+    sha256 cellar: :any,                 arm64_sequoia: "efa8510c21cc57b74648d6d0d2f86301170bf1e791d61888561726f4bdaf9e8d"
+    sha256 cellar: :any,                 arm64_sonoma:  "c04b2291c6914ab5a359ccfb87d212bbe52ea50217a2e5d28408642eaf99a19d"
+    sha256 cellar: :any,                 arm64_ventura: "1bae3874a3219b0f1d03962d0d7361eef68071a512d381f17143031312d0cf9d"
+    sha256 cellar: :any,                 sonoma:        "1948c2c92ef82cd062fda485a71cb65cc65421d68c50d8d79e69e3108ef1fc51"
+    sha256 cellar: :any,                 ventura:       "c8cd50bd8ad1ad9fc6b19e34929054bec703718d7b67c3451d5be92a745e24d9"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "7d7f5a9a3e96d4032b99003c6d065e7ac14f8229ad98cf93f557bb1a47020e49"
   end
 
   depends_on "autoconf" => :build
@@ -21,7 +22,7 @@ class Couchdb < Formula
   depends_on "erlang" => :build
   depends_on "libtool" => :build
   depends_on "pkg-config" => :build
-  depends_on "icu4c"
+  depends_on "icu4c@76"
   depends_on "openssl@3"
 
   uses_from_macos "ncurses"

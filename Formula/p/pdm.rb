@@ -3,18 +3,18 @@ class Pdm < Formula
 
   desc "Modern Python package and dependency manager supporting the latest PEP standards"
   homepage "https://pdm.fming.dev"
-  url "https://files.pythonhosted.org/packages/32/ff/a903a72a8a1272e5515a54824aee4449e0771613c972b80ee50ae3328401/pdm-2.19.3.tar.gz"
-  sha256 "a9cc7f2078cd3b25ac645ffb5eca9d6b3d5dfcd788eaddfb6083432da71c97c2"
+  url "https://files.pythonhosted.org/packages/91/68/28a6e7e075f808e1ed751f822e074573c71ebe42b32b63efb4b8a3a0a2eb/pdm-2.20.1.tar.gz"
+  sha256 "5348e9d33de381f998904a63ab18efdd6d1cf6377d45572e8b996d58dfc5b996"
   license "MIT"
   head "https://github.com/pdm-project/pdm.git", branch: "main"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "4b438d2e154300a82161bf7f1ae93e95c8b06bd0f7088ad7b4b6181e7de3d889"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "29150e9110e273dd6af47a08052c857e92051a7dc692a0afb1c4fe13fdb9b87d"
-    sha256 cellar: :any_skip_relocation, arm64_ventura: "125e93da0cd120f1964af20381500dc507383aefa5c06dfbfd6571d3d57334d4"
-    sha256 cellar: :any_skip_relocation, sonoma:        "c1753d4ee1358ce2dddfb6d00b43c3ac86ee718951f7956e9f395ad5afb3c13d"
-    sha256 cellar: :any_skip_relocation, ventura:       "4e6c5f6f0fe719b1f0cf8768f285cadac8412fe13b3710a2899522060ccebf15"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "d542a5491f805f79cdbad28eb9b131c552ea7a84fe9da1e69f52c9a76ec3c8ed"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "8a07150b6bc46c35bcd88ea3d5ebea1b834c19e15b14618b2728412b207ca389"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "7fbbad3e2e17d2fac5f1fab50bf94fabb99ef25ec6ec50c9c769645d3f1182e7"
+    sha256 cellar: :any_skip_relocation, arm64_ventura: "129b8115a4fcdb157bca2f6ca8eab758726234f0d95d9051ae3cca4ae015c987"
+    sha256 cellar: :any_skip_relocation, sonoma:        "9f77703a09385648b1dc83e630b692dde2ed4886f85bb707c01f0ac787ee5ea6"
+    sha256 cellar: :any_skip_relocation, ventura:       "1f63fccd0426a94ad6b2a5b25e163213a92a2ffaeef3686358db240bdfdb8b8f"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "4a10be0708722d8a0b4878b74c647d3266c3d31b96cb65cb2682496d82a9fa37"
   end
 
   depends_on "certifi"
@@ -26,8 +26,8 @@ class Pdm < Formula
   end
 
   resource "blinker" do
-    url "https://files.pythonhosted.org/packages/1e/57/a6a1721eff09598fb01f3c7cda070c1b6a0f12d63c83236edf79a440abcc/blinker-1.8.2.tar.gz"
-    sha256 "8f77b09d3bf7c795e969e9486f39c2c5e9c39d4ee07424be2bc594ece9642d83"
+    url "https://files.pythonhosted.org/packages/21/28/9b3f50ce0e048515135495f198351908d99540d69bfdc8c1d15b73dc55ce/blinker-1.9.0.tar.gz"
+    sha256 "b4ce2265a7abece45e7cc896e98dbebe6cead56bcf805a3d23136d145f5445bf"
   end
 
   resource "dep-logic" do
@@ -96,8 +96,8 @@ class Pdm < Formula
   end
 
   resource "packaging" do
-    url "https://files.pythonhosted.org/packages/51/65/50db4dda066951078f0a96cf12f4b9ada6e4b811516bf0262c0f4f7064d4/packaging-24.1.tar.gz"
-    sha256 "026ed72c8ed3fcce5bf8950572258698927fd1dbda10a5e981cdf0ac37f4f002"
+    url "https://files.pythonhosted.org/packages/d0/63/68dbb6eb2de9cb10ee4c9c14a0148804425e13c4fb20d61cce69f53106da/packaging-24.2.tar.gz"
+    sha256 "c228a6dc5e932d346bc5739379109d49e8853dd8223571c7c5b55260edc0b97f"
   end
 
   resource "pbs-installer" do
@@ -126,13 +126,13 @@ class Pdm < Formula
   end
 
   resource "resolvelib" do
-    url "https://files.pythonhosted.org/packages/ce/10/f699366ce577423cbc3df3280063099054c23df70856465080798c6ebad6/resolvelib-1.0.1.tar.gz"
-    sha256 "04ce76cbd63fded2078ce224785da6ecd42b9564b1390793f64ddecbe997b309"
+    url "https://files.pythonhosted.org/packages/79/e6/53dc936ddd11353967e5cb7361f537042914745fccfcaa3475505c9ac596/resolvelib-1.1.0.tar.gz"
+    sha256 "b68591ef748f58c1e2a2ac28d0961b3586ae8b25f60b0ba9a5e4f3d87c1d6a79"
   end
 
   resource "rich" do
-    url "https://files.pythonhosted.org/packages/aa/9e/1784d15b057b0075e5136445aaea92d23955aad2c93eaede673718a40d95/rich-13.9.2.tar.gz"
-    sha256 "51a2c62057461aaf7152b4d611168f93a9fc73068f8ded2790f29fe2b5366d0c"
+    url "https://files.pythonhosted.org/packages/ab/3a/0316b28d0761c6734d6bc14e770d85506c986c85ffb239e688eeaab2c2bc/rich-13.9.4.tar.gz"
+    sha256 "439594978a49a09530cff7ebc4b5c7103ef57baf48d5ea3184f21d9a2befa098"
   end
 
   resource "shellingham" do
@@ -156,8 +156,8 @@ class Pdm < Formula
   end
 
   resource "truststore" do
-    url "https://files.pythonhosted.org/packages/df/2e/0e21d4c77bc41c588d3d3c87b8f9b32b2338452718cb261d31cbe55eb4d5/truststore-0.9.2.tar.gz"
-    sha256 "a1dee0d0575ff22d2875476343783a5d64575419974e228f3248772613c3d993"
+    url "https://files.pythonhosted.org/packages/01/a8/cdcf418e067b8ae539012a3f1a51f90b30b26f5e1952a8f60304396babbc/truststore-0.10.0.tar.gz"
+    sha256 "5da347c665714fdfbd46f738c823fe9f0d8775e41ac5fb94f325749091187896"
   end
 
   resource "typing-extensions" do
@@ -171,8 +171,8 @@ class Pdm < Formula
   end
 
   resource "virtualenv" do
-    url "https://files.pythonhosted.org/packages/10/7f/192dd6ab6d91ebea7adf6c030eaf549b1ec0badda9f67a77b633602f66ac/virtualenv-20.27.0.tar.gz"
-    sha256 "2ca56a68ed615b8fe4326d11a0dca5dfbe8fd68510fb6c6349163bed3c15f2b2"
+    url "https://files.pythonhosted.org/packages/8c/b3/7b6a79c5c8cf6d90ea681310e169cf2db2884f4d583d16c6e1d5a75a4e04/virtualenv-20.27.1.tar.gz"
+    sha256 "142c6be10212543b32c6c45d3d3893dff89112cc588b7d0879ae5a1ec03a47ba"
   end
 
   def install
@@ -181,7 +181,7 @@ class Pdm < Formula
   end
 
   test do
-    (testpath/"pyproject.toml").write <<~EOS
+    (testpath/"pyproject.toml").write <<~TOML
       [project]
       name = "testproj"
       requires-python = ">=3.9"
@@ -191,9 +191,9 @@ class Pdm < Formula
       [build-system]
       requires = ["pdm-backend"]
       build-backend = "pdm.backend"
-    EOS
+    TOML
     system bin/"pdm", "add", "requests==2.31.0"
-    assert_match "dependencies = [\n    \"requests==2.31.0\",\n]", (testpath/"pyproject.toml").read
+    assert_match "dependencies = [\"requests==2.31.0\"]", (testpath/"pyproject.toml").read
     assert_predicate testpath/"pdm.lock", :exist?
     assert_match "name = \"urllib3\"", (testpath/"pdm.lock").read
     output = shell_output("#{bin}/pdm run python -c 'import requests;print(requests.__version__)'")

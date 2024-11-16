@@ -23,7 +23,7 @@ class PhpAT80 < Formula
   disable! date: "2023-11-29", because: :versioned_formula
 
   depends_on "httpd" => [:build, :test]
-  depends_on "pkg-config" => :build
+  depends_on "pkgconf" => :build
   depends_on "apr"
   depends_on "apr-util"
   depends_on "argon2"
@@ -348,11 +348,11 @@ class PhpAT80 < Formula
       port_fpm = free_port
 
       expected_output = /^Hello world!$/
-      (testpath/"index.php").write <<~EOS
+      (testpath/"index.php").write <<~PHP
         <?php
         echo 'Hello world!' . PHP_EOL;
         var_dump(ldap_connect());
-      EOS
+      PHP
       main_config = <<~EOS
         Listen #{port}
         ServerName localhost:#{port}

@@ -1,10 +1,9 @@
 class Libpq < Formula
   desc "Postgres C API library"
   homepage "https://www.postgresql.org/docs/current/libpq.html"
-  url "https://ftp.postgresql.org/pub/source/v17.0/postgresql-17.0.tar.bz2"
-  sha256 "7e276131c0fdd6b62588dbad9b3bb24b8c3498d5009328dba59af16e819109de"
+  url "https://ftp.postgresql.org/pub/source/v17.1/postgresql-17.1.tar.bz2"
+  sha256 "7849db74ef6a8555d0723f87e81539301422fa9c8e9f21cce61fdc14e9199dcd"
   license "PostgreSQL"
-  revision 1
 
   livecheck do
     url "https://ftp.postgresql.org/pub/source/"
@@ -12,12 +11,12 @@ class Libpq < Formula
   end
 
   bottle do
-    sha256 arm64_sequoia: "83ce158b59c1e6c0f1e0b6321c9af1e141cc9ea22a520afa9348a7ea1e94386a"
-    sha256 arm64_sonoma:  "0e7d0ca57a1eebcf021d3ae9573a5406e26f1be29bdc264beaf5a0ba011151f9"
-    sha256 arm64_ventura: "16055a30f8a594e616ae20e59dc87e8bb253ef602a844acf684e4cbc92a32015"
-    sha256 sonoma:        "1a5d90741561c6384f6552b4483bd7e588ef11e92b5a88e2596fc7aeb565aeeb"
-    sha256 ventura:       "00f99a18357b79c57c5e8a557192be42a7300f652f715ddd57ee92c8b37f067f"
-    sha256 x86_64_linux:  "e648c3462066b5befe069154d52dff247a20908d3e8b309dd659b38e8417bac5"
+    sha256 arm64_sequoia: "f84f58fc190da211ee98be839163b0bfa421f8f15f7de9dddce9ee1512b5b119"
+    sha256 arm64_sonoma:  "0bd9a799f2557db380ff2f1fbccee604661f2374e9bbdac7d6585a1cb4047d80"
+    sha256 arm64_ventura: "906725a4779aa7eae9f5e491eeaa76fb95ebdd46a59faceaa59c2e7030ee6f32"
+    sha256 sonoma:        "41cee67436f5e5098f492f427d0c9edb7ae64d5bfdda8b0170cbde727c2cfafb"
+    sha256 ventura:       "57f7bb2c6461df6ec4bf1d3bdf1a3b9f7c8418d028133e3fe1ef0a6352d838d4"
+    sha256 x86_64_linux:  "6e47df7368dfa9c860f1b8f5474565029f7976e62e679955f870527155aa2799"
   end
 
   keg_only "conflicts with postgres formula"
@@ -25,7 +24,7 @@ class Libpq < Formula
   depends_on "docbook" => :build
   depends_on "docbook-xsl" => :build
   depends_on "pkg-config" => :build
-  depends_on "icu4c@75"
+  depends_on "icu4c@76"
   # GSSAPI provided by Kerberos.framework crashes when forked.
   # See https://github.com/Homebrew/homebrew-core/issues/47494.
   depends_on "krb5"
@@ -67,7 +66,7 @@ class Libpq < Formula
   end
 
   test do
-    (testpath/"libpq.c").write <<~EOS
+    (testpath/"libpq.c").write <<~C
       #include <stdlib.h>
       #include <stdio.h>
       #include <libpq-fe.h>
@@ -90,7 +89,7 @@ class Libpq < Formula
 
           return 0;
         }
-    EOS
+    C
     system ENV.cc, "libpq.c", "-L#{lib}", "-I#{include}", "-lpq", "-o", "libpqtest"
     assert_equal "Connection to database attempted and failed", shell_output("./libpqtest")
   end

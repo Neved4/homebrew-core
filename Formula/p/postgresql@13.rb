@@ -1,10 +1,9 @@
 class PostgresqlAT13 < Formula
   desc "Object-relational database system"
   homepage "https://www.postgresql.org/"
-  url "https://ftp.postgresql.org/pub/source/v13.16/postgresql-13.16.tar.bz2"
-  sha256 "c9cbbb6129f02328204828066bb3785c00a85c8ca8fd329c2a8a53c1f5cd8865"
+  url "https://ftp.postgresql.org/pub/source/v13.17/postgresql-13.17.tar.bz2"
+  sha256 "022b0a6e7bc374a777eece33708895d7b60cae07d492b286b296a49d7395d78b"
   license "PostgreSQL"
-  revision 2
 
   livecheck do
     url "https://ftp.postgresql.org/pub/source/"
@@ -12,12 +11,12 @@ class PostgresqlAT13 < Formula
   end
 
   bottle do
-    sha256 arm64_sequoia: "145d3aae678816850467b0e12d0f829693c0f07bac5de41f77e7dda6f31e9055"
-    sha256 arm64_sonoma:  "9f62a95810706df6bf7d7f9e71bfeb1e351b33a0741ce4f05209a19129e207ce"
-    sha256 arm64_ventura: "17b9defacee45a35a715562587237ac0c058f86f76acaff53f69c3badf159981"
-    sha256 sonoma:        "bd5e236f9fb27efac82c555a42a0d3c39e0429e4ade5da6f3e78b4481a33204c"
-    sha256 ventura:       "13d1d9130de9c3fbafb7e78eb433c514d271501cfbc16eb708004e34265f30ea"
-    sha256 x86_64_linux:  "41481352184d8be652457d8b9f442afa22b42be1d38991ec0b70ce8b07e703b1"
+    sha256 arm64_sequoia: "7745713fbe04d190ed3be55a0f4538fee3300fda77f34ce6d0f750e3e1eb87a1"
+    sha256 arm64_sonoma:  "5b4ef8e48e14f5732ba0f740fd03b9350c857213b15e9e844dc1caba8f54d002"
+    sha256 arm64_ventura: "b7d6bd3d6a39351952f81e09ca23a850a1db6258a915987e5f95254c66a5f00c"
+    sha256 sonoma:        "cd256078447b76e5cffcb638e04996a52625348a7be74155556bf7ab3581a3cf"
+    sha256 ventura:       "f7221bf82699756c42c9619f3836759a6974890ed3b0f66c7404781b2caf2bcb"
+    sha256 x86_64_linux:  "45c7899bb5700ae0c0ecf833fd856341ed2592a4f65d197b0bed0970ea9e5950"
   end
 
   keg_only :versioned_formula
@@ -26,7 +25,7 @@ class PostgresqlAT13 < Formula
   deprecate! date: "2025-11-13", because: :unsupported
 
   depends_on "pkg-config" => :build
-  depends_on "icu4c@75"
+  depends_on "icu4c@76"
 
   # GSSAPI provided by Kerberos.framework crashes when forked.
   # See https://github.com/Homebrew/homebrew-core/issues/47494.
